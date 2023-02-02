@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GrabBehaviour : MonoBehaviour {
     bool filledHuerto;
-    public string objecTag;
+    public string objectTag;
     public bool objectGrabbed;
-    public bool water, vegetable;
+    public bool water, vegetable, turnip;
 
-    GameObject vegetablePlaceHolder;
+    GameObject vegetablePlaceHolder, mowerPlaceHolder;
     public int waterCount, waterToWin;
     public List<Transform> vegetablePos;
     public Transform huerto;
@@ -19,6 +19,7 @@ public class GrabBehaviour : MonoBehaviour {
     private void Start() {
         pC = GetComponentInParent<PlayerController>();
         vegetablePlaceHolder = transform.GetChild(0).gameObject;
+        mowerPlaceHolder = transform.GetChild(1).gameObject;
     }
 
     private void Update() {
@@ -31,7 +32,7 @@ public class GrabBehaviour : MonoBehaviour {
         switch (grabbingObject.tag) {
             case "Water":
                 water = true;
-                objecTag = grabbingObject.tag;
+                objectTag = grabbingObject.tag;
                 objectGrabbed = true;
                 break;
             case "Vegetable":
@@ -45,9 +46,12 @@ public class GrabBehaviour : MonoBehaviour {
                     }
                 }
                 vegetable = true;
-                objecTag = grabbingObject.tag;
+                objectTag = grabbingObject.tag;
                 objectGrabbed = true;
                 GrabVegetable(grabbingObject);
+                break;
+            case "Mower":
+                GrabMower(grabbingObject);
                 break;
             default:
                 break;
@@ -55,7 +59,7 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     public void DropObject() {
-        switch (objecTag) {
+        switch (objectTag) {
             case "Water":
                 water = false;
                 objectGrabbed = false;
@@ -64,10 +68,34 @@ public class GrabBehaviour : MonoBehaviour {
             case "Vegetable":
                 VegetableBehaviour();
                 break;
+            case "Mower":
+                MowerBehaviour();
+                break;
             default:
                 break;
         }
     }
+
+    void GrabMower(Transform grabbingObject) {
+        objectTag = grabbingObject.tag;
+        grabbingObject.GetComponent<LawnMower>().trigger.enabled = false;
+        pC.grabZone = false;
+        objectGrabbed = true;
+        grabbingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        grabbingObject.position = transform.position + transform.forward*2;
+        grabbingObject.SetParent(transform);
+        grabbingObject.gameObject.SetActive(false);
+        mowerPlaceHolder.SetActive(true);
+    }
+
+    void MowerBehaviour() {
+        objectGrabbed = false;
+        transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(2).GetComponent<LawnMower>().StartCoroutine(transform.GetChild(2).GetComponent<LawnMower>().GetGrabZone());
+        transform.GetChild(2).SetParent(null);
+        mowerPlaceHolder.SetActive(false);
+    }
+
     #region Huerto
     void HuertoSetup() {
         if (GameManager.instance.currentMiniGame == MiniGames.Huertos && !filledHuerto) {
@@ -126,7 +154,7 @@ public class GrabBehaviour : MonoBehaviour {
 
     public void ObjectFalledOff() {
         objectGrabbed = false;
-        switch (objecTag) {
+        switch (objectTag) {
             case "Water":
                 water = false;
                 break;

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public PlayerInputManager pIM;
     public int currentPlayers;
+    public int rootsP1, rootsP2;
     public int vegetablesP1, vegetablesP2;
 
     private void Awake() {
@@ -25,6 +26,18 @@ public class GameManager : MonoBehaviour
     void OnPlayerJoined(PlayerInput obj) {
         currentPlayers++;
         obj.transform.tag = $"Player{currentPlayers}";
+    }
+
+    public void CheckRoots(bool isPlayer1) {
+        if (isPlayer1) {
+            if (--rootsP1 <= 0) {
+                Debug.Log("P2 Wins");
+            }
+        } else {
+            if (--rootsP2 <= 0) {
+                Debug.Log("P1 Wins");
+            }
+        }
     }
 
     //private void PIM_onPlayerJoined(PlayerInput obj) {

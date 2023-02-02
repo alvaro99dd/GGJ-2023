@@ -73,6 +73,12 @@ public class PlayerController : MonoBehaviour {
         earthquakeCoroutine = null;
     }
 
+    public IEnumerator StunPlayer(float stunDuration) {
+        stun = true;
+        yield return new WaitForSeconds(stunDuration);
+        stun = false;
+    }
+
     void CheckPrompt() {
         if (dropZone && gB.objectGrabbed) {
             Debug.Log("Mostrando prompt");
@@ -93,13 +99,16 @@ public class PlayerController : MonoBehaviour {
             } else {
                 dropZone = true;
             }
-        } else if (other.CompareTag("Water") || other.CompareTag("Vegetable") || other.CompareTag("LawnMower")) {
+        } else if (other.CompareTag("Water") || other.CompareTag("Vegetable") || other.CompareTag("Mower")) {
             grabZone = true;
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        dropZone = false;
-        grabZone = false;
+        if (other.CompareTag("DropZone")) {
+            dropZone = false;
+        } else {
+            grabZone = false;
+        }
     }
 }

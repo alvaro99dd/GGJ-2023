@@ -7,17 +7,17 @@ TagManager:
   - Water
   - Vegetable
   - DropZone
-  - LawnMower
   - Player1
   - Player2
   - Wall
   - VegetablePlayer1
   - VegetablePlayer2
+  - Mower
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Huerto
   - Water
   - UI
   - 
