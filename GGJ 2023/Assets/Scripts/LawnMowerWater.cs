@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LawnMower : MonoBehaviour {
+public class LawnMowerWater : MonoBehaviour {
     public float minTime, maxTime, speed, stunDuration;
     public Transform limit1, limit2;
     public Rigidbody rb1, rb2;
@@ -11,10 +11,16 @@ public class LawnMower : MonoBehaviour {
 
     private void Start() {
         //rb1 = GetComponent<Rigidbody>();
+        if (GameManager.instance.currentMiniGame != MiniGames.Regar) {
+            return;
+        }
         StartCoroutine(randomMovement());
     }
 
     private void FixedUpdate() {
+        if (GameManager.instance.currentMiniGame != MiniGames.Regar) {
+            return;
+        }
         rb1.velocity = randomDir.normalized * speed * Time.fixedDeltaTime;
         Debug.Log("rb1:" + rb1.velocity);
         Debug.Log(rb2.velocity);

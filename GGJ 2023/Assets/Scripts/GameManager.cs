@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public PlayerInputManager pIM;
     public int currentPlayers;
+    public int vegetablesP1, vegetablesP2;
 
     private void Awake() {
         if (instance == null) {

@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
         if (earthquake != null) {
             CheckEarthquake();
         }
+        CheckPrompt();
     }
 
     void Movement() {
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour {
     public void OnGrab(InputAction.CallbackContext ctx) {
         if (grabZone && !gB.objectGrabbed) {
             grabbing = StartCoroutine(EnableGrab());
-        } else if (dropZone && gB.objectGrabbed) {
+        } else if (dropZone && gB.objectGrabbed && grabbing == null) {
             gB.DropObject();
         }
     }
@@ -72,9 +73,26 @@ public class PlayerController : MonoBehaviour {
         earthquakeCoroutine = null;
     }
 
+    void CheckPrompt() {
+        if (dropZone && gB.objectGrabbed) {
+            Debug.Log("Mostrando prompt");
+        } else if (grabZone && !gB.objectGrabbed) {
+            Debug.Log("Mostrando prompt");
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("DropZone")) {
-            dropZone = true;
+            gB.huertoName = other.name;
+            if (GameManager.instance.currentMiniGame == MiniGames.Huertos) {
+                if (gB.huertoName != gB.huerto.parent.name) {
+                    dropZone = false;
+                } else {
+                    dropZone = true;
+                }
+            } else {
+                dropZone = true;
+            }
         } else if (other.CompareTag("Water") || other.CompareTag("Vegetable") || other.CompareTag("LawnMower")) {
             grabZone = true;
         }

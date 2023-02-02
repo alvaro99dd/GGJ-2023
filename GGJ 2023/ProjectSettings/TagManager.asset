@@ -11,6 +11,8 @@ TagManager:
   - Player1
   - Player2
   - Wall
+  - VegetablePlayer1
+  - VegetablePlayer2
   layers:
   - Default
   - TransparentFX

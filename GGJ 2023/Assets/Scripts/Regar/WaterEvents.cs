@@ -13,11 +13,17 @@ public class WaterEvents : MonoBehaviour {
     public Rigidbody rb1, rb2;
 
     private void Start() {
+        if (GameManager.instance.currentMiniGame != MiniGames.Regar) {
+            return;
+        }
         firstRandomSpawn();
         movement = StartCoroutine(randomMovement());
     }
 
     private void FixedUpdate() {
+        if (GameManager.instance.currentMiniGame != MiniGames.Regar) {
+            return;
+        }
         if (!spawningWater) {
             Movement(randomDir, randomDir2);
         }

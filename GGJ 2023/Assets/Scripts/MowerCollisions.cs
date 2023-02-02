@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MowerCollisions : MonoBehaviour
 {
-    LawnMower lM;
+    LawnMowerWater lM;
 
     private void Start() {
-        lM = GameObject.Find("MiniGameEvents").GetComponent<LawnMower>();
+        lM = GameObject.Find("MiniGameEvents").GetComponent<LawnMowerWater>();
     }
 
     private void OnCollisionEnter(Collision collision) {
