@@ -98,12 +98,22 @@ public class GrabBehaviour : MonoBehaviour {
         objectGrabbed = false;
         vegetablePlaceHolder.SetActive(false);
         if (transform.parent.CompareTag("Player1")) {
-            vegetablePos[GameManager.instance.vegetablesP1++].GetChild(0).gameObject.SetActive(true);
-
+            for (int i = 0; i < vegetablePos.Count; i++) {
+                if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
+                    vegetablePos[i].GetChild(0).gameObject.SetActive(true);
+                    GameManager.instance.vegetablesP1++;
+                    break;
+                }
+            }
             if (GameManager.instance.vegetablesP1 >= vegetablePos.Count) Debug.Log(transform.parent.tag + " Wins!");
         } else {
-            vegetablePos[GameManager.instance.vegetablesP2++].GetChild(0).gameObject.SetActive(true);
-
+            for (int i = 0; i < vegetablePos.Count; i++) {
+                if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
+                    vegetablePos[i].GetChild(0).gameObject.SetActive(true);
+                    GameManager.instance.vegetablesP2++;
+                    break;
+                }
+            }
             if (GameManager.instance.vegetablesP2 >= vegetablePos.Count) Debug.Log(transform.parent.tag + " Wins!");
         }
 
