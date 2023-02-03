@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 824740930356332633}
   - component: {fileID: 824740930356332634}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Particle_System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824740930356332635}
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 7.72, y: -0.94, z: 0}
+  m_LocalPosition: {x: 7.72, y: 0.88, z: 1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4763,7 +4763,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6907d0c1eb01b0142b06cd2b3cce2404, type: 2}
+  - {fileID: 2100000, guid: 4eb7e037a6301634a8112b1e2bcd2015, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
