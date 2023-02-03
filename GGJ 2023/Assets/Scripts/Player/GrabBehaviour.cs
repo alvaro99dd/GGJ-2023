@@ -88,15 +88,17 @@ public class GrabBehaviour : MonoBehaviour {
         pC.grabZone = false;
         grabbingObject.position = transform.position;
         grabbingObject.SetParent(transform);
-        grabbingObject.GetComponent<Rigidbody>().useGravity = false;
-        grabbingObject.GetComponent<CapsuleCollider>().enabled = false;
+        //grabbingObject.GetComponent<TurnipType>().trigger.enabled = false;
+        //grabbingObject.GetComponentInChildren<Rigidbody>().useGravity = false;
+        //grabbingObject.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        //grabbingObject.GetComponent<CapsuleCollider>().enabled = true;
     }
 
     void TurnipBehaviour() {
         objectGrabbed = false;
-        transform.GetChild(2).position = transform.position + transform.forward * 2;
-        transform.GetChild(2).GetComponent<Rigidbody>().useGravity = true;
-        transform.GetChild(2).GetComponent<CapsuleCollider>().enabled = true;
+        transform.GetChild(2).position = transform.position + transform.forward;
+        //transform.GetChild(2).GetComponentInChildren<Rigidbody>().useGravity = true;
+        //transform.GetChild(2).GetComponentInChildren<CapsuleCollider>().enabled = true;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
         transform.GetChild(2).SetParent(null);
     }

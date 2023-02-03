@@ -41,8 +41,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckTurnips() {
-        
+    public void CheckTurnips(bool isPlayer1, int score) {
+        if (isPlayer1) {
+            turnipsP1 += score;
+        } else {
+            turnipsP2 += score;
+        }
+    }
+
+    public void DeleteTurnips(bool isPlayer1, int score) {
+        if (isPlayer1) {
+            turnipsP1 -= score;
+        } else {
+            turnipsP2 -= score;
+        }
     }
     //private void PIM_onPlayerJoined(PlayerInput obj) {
     //    currentPlayers++;

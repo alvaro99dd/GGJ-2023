@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour {
             } else {
                 dropZone = true;
             }
-        } else if (other.CompareTag("Water") || other.CompareTag("Vegetable") || other.CompareTag("Mower")) {
+        } else if (other.CompareTag("Water") || other.CompareTag("Vegetable") || other.CompareTag("Mower") || other.CompareTag("Turnip")) {
             grabZone = true;
         }
     }
