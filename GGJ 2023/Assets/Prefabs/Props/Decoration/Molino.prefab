@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1196973190254367577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1196973190254367582}
+  m_Layer: 0
+  m_Name: Molino
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1196973190254367582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196973190254367577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1663580587926915905}
+  - {fileID: 1663580588612189767}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1196973190103669164
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1196973190254367582}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.3030286
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.373053
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.3626676
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6649083
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.74457705
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.049486604
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.032451324
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8737f0c166775a14683094e5711afa49, type: 2}
+    - target: {fileID: 919132149155446097, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+      propertyPath: m_Name
+      value: MolinoBase
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+--- !u!4 &1663580588612189767 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ada2b0945a4a5e4a80f8b9fa4525009, type: 3}
+  m_PrefabInstance: {fileID: 1196973190103669164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1196973190746991786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1196973190254367582}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.3030286
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.373053
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.3626676
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c030a69d49348e84a839d4977120fbe3, type: 2}
+    - target: {fileID: 919132149155446097, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+      propertyPath: m_Name
+      value: MolinoArriba
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+--- !u!4 &1663580587926915905 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a1430ce3342829a4a94f003638eddd1b, type: 3}
+  m_PrefabInstance: {fileID: 1196973190746991786}
+  m_PrefabAsset: {fileID: 0}
