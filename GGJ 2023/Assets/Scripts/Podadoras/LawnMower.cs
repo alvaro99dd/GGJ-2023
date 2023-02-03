@@ -8,7 +8,7 @@ public class LawnMower : MonoBehaviour
     public Collider trigger;
     Transform raizPlayer1, raizPlayer2;
     Rigidbody rB;
-    Vector3 dir;
+    public Vector3 dir;
 
     private void Start() {
         raizPlayer1 = GameObject.Find("RaizPlayer1").transform;
@@ -27,7 +27,7 @@ public class LawnMower : MonoBehaviour
         transform.LookAt(rB.velocity);
     }
 
-    Vector3 GetRandomDirection() {
+    public Vector3 GetRandomDirection() {
         Vector3 randomDir = Vector3.zero;
         int randomRoot = Random.Range(0, 2);
         switch (randomRoot) {
@@ -57,6 +57,10 @@ public class LawnMower : MonoBehaviour
             isPlayer1 = false;
             GameManager.instance.CheckRoots(isPlayer1);
             collision.gameObject.SetActive(false);
+            dir = GetRandomDirection();
+        }
+
+        if (collision.transform.CompareTag("Wall")) {
             dir = GetRandomDirection();
         }
 

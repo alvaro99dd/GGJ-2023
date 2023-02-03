@@ -91,6 +91,7 @@ public class GrabBehaviour : MonoBehaviour {
     void MowerBehaviour() {
         objectGrabbed = false;
         transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(2).GetComponent<LawnMower>().dir = transform.forward;
         transform.GetChild(2).GetComponent<LawnMower>().StartCoroutine(transform.GetChild(2).GetComponent<LawnMower>().GetGrabZone());
         transform.GetChild(2).SetParent(null);
         mowerPlaceHolder.SetActive(false);
