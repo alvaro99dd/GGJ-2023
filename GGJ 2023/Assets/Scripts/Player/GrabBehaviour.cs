@@ -53,6 +53,10 @@ public class GrabBehaviour : MonoBehaviour {
             case "Mower":
                 GrabMower(grabbingObject);
                 break;
+            case "Turnip":
+                objectGrabbed = true;
+                GrabTurnip(grabbingObject);
+                break;
             default:
                 break;
         }
@@ -71,9 +75,30 @@ public class GrabBehaviour : MonoBehaviour {
             case "Mower":
                 MowerBehaviour();
                 break;
+            case "Turnip":
+                TurnipBehaviour();
+                break;
             default:
                 break;
         }
+    }
+
+    void GrabTurnip(Transform grabbingObject) {
+        objectTag = grabbingObject.tag;
+        pC.grabZone = false;
+        grabbingObject.position = transform.position;
+        grabbingObject.SetParent(transform);
+        grabbingObject.GetComponent<Rigidbody>().useGravity = false;
+        grabbingObject.GetComponent<CapsuleCollider>().enabled = false;
+    }
+
+    void TurnipBehaviour() {
+        objectGrabbed = false;
+        transform.GetChild(2).position = transform.position + transform.forward * 2;
+        transform.GetChild(2).GetComponent<Rigidbody>().useGravity = true;
+        transform.GetChild(2).GetComponent<CapsuleCollider>().enabled = true;
+        transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
+        transform.GetChild(2).SetParent(null);
     }
 
     void GrabMower(Transform grabbingObject) {

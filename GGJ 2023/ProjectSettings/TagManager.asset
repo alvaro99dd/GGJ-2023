@@ -13,6 +13,7 @@ TagManager:
   - VegetablePlayer1
   - VegetablePlayer2
   - Mower
+  - Turnip
   layers:
   - Default
   - TransparentFX

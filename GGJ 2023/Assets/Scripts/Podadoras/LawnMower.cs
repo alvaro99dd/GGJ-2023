@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LawnMower : MonoBehaviour
 {
+    public float turnSmoothVelocity, turnSmoothTime;
     public float speed, stunDuration;
     public Collider trigger;
     Transform raizPlayer1, raizPlayer2;
     Rigidbody rB;
     public Vector3 dir;
+    Vector3 velocity;
 
     private void Start() {
         raizPlayer1 = GameObject.Find("RaizPlayer1").transform;
@@ -24,7 +26,8 @@ public class LawnMower : MonoBehaviour
 
     void LawnMovement() {
         rB.velocity = dir.normalized * speed * Time.deltaTime;
-        transform.LookAt(rB.velocity);
+        transform.forward = Vector3.SmoothDamp(transform.forward, dir, ref velocity, turnSmoothTime);
+        //transform.LookAt(rB.velocity);
     }
 
     public Vector3 GetRandomDirection() {
