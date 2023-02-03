@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int currentPlayers;
     public int rootsP1, rootsP2;
     public int vegetablesP1, vegetablesP2;
+    public int turnipsP1, turnipsP2;
 
     private void Awake() {
         if (instance == null) {
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CheckTurnips() {
+        
+    }
     //private void PIM_onPlayerJoined(PlayerInput obj) {
     //    currentPlayers++;
     //    obj.transform.tag = $"Player{currentPlayers}";
