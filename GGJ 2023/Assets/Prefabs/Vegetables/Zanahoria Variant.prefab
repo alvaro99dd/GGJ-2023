@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!54 &7813169819625788304
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645298566285679510}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &985273480169791499
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645298566285679510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4970989848755135003, guid: b78d338ba596dfa459a161baa53f3076, type: 3}
+--- !u!135 &5998237983605330903
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645298566285679510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.005
+  m_Center: {x: -0.00003635854, y: 0.0000055823175, z: 0.0033331641}
 --- !u!1001 &2955725135739298296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,7 +112,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1986769006964374126, guid: 47db810262067e1409bf1164c6c36eda, type: 3}
       propertyPath: m_Name
-      value: Zanahoria
+      value: Zanahoria Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986769006964374126, guid: 47db810262067e1409bf1164c6c36eda, type: 3}
+      propertyPath: m_TagString
+      value: Vegetable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47db810262067e1409bf1164c6c36eda, type: 3}
+--- !u!1 &3645298566285679510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1986769006964374126, guid: 47db810262067e1409bf1164c6c36eda, type: 3}
+  m_PrefabInstance: {fileID: 2955725135739298296}
+  m_PrefabAsset: {fileID: 0}
