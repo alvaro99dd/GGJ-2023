@@ -75,14 +75,18 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator StunBehaviour() {
         stun = true;
+        //particulas stun aparecen
         yield return new WaitForSeconds(earthquake.stunDuration);
         stun = false;
+        //particulas stun fuera
         earthquakeCoroutine = null;
     }
 
     public IEnumerator StunPlayer(float stunDuration) {
         stun = true;
+        //particulas stun aparecen
         yield return new WaitForSeconds(stunDuration);
+        //particulas stun fuera
         stun = false;
     }
 

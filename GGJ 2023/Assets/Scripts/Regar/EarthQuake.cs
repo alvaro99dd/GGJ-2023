@@ -15,6 +15,7 @@ public class EarthQuake : MonoBehaviour {
     IEnumerator randomQuake() {
         while (true) {
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+            //particulas terremoto
             earthquake = true;
             yield return new WaitForSeconds(earthquakeTime);
             earthquake = false;

@@ -51,9 +51,11 @@ public class TurnipType : MonoBehaviour
     private void OnTriggerEnter(Collider collision) {
         bool isPlayer1 = true;
         if (collision.name == "BasePlayer1" && !hasCollided) {
+            //particulas nabo puesto en base
             hasCollided = true;
             GameManager.instance.CheckTurnips(isPlayer1, score);
         } else if (collision.name == "BasePlayer2" && !hasCollided) {
+            //particulas nabo puesto en base
             hasCollided = true;
             GameManager.instance.CheckTurnips(!isPlayer1, score);
         }

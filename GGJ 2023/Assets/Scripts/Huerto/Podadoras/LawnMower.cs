@@ -52,11 +52,13 @@ public class LawnMower : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         bool isPlayer1;
         if (collision.collider.CompareTag("VegetablePlayer1")) {
+            //particulas romper raices
             isPlayer1 = true;
             GameManager.instance.CheckRoots(isPlayer1);
             collision.gameObject.SetActive(false);
             dir = GetRandomDirection();
         } else if (collision.collider.CompareTag("VegetablePlayer2")) {
+            //particulas romper raices
             isPlayer1 = false;
             GameManager.instance.CheckRoots(isPlayer1);
             collision.gameObject.SetActive(false);

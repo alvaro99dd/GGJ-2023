@@ -18,7 +18,7 @@ public class MowerCollisions : MonoBehaviour
             lM.pC = collision.gameObject.GetComponent<PlayerController>();
             StartCoroutine(lM.StunBehaviour());
         }
-        if (collision.transform.CompareTag("Wall") || collision.transform.CompareTag("Vegetable")) {
+        if (collision.transform.CompareTag("Wall") || collision.transform.CompareTag("Vegetable") || collision.transform.CompareTag("Mower")) {
             Vector3 randomPos = new Vector3(Random.Range(lM.limit1.position.x, lM.limit2.position.x), Random.Range(lM.limit1.position.y, lM.limit2.position.y), Random.Range(lM.limit1.position.z, lM.limit2.position.z));
             lM.randomDir = randomPos - lM.rb1.position;
             lM.randomDir.y = -0.5f;

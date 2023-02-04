@@ -1021,6 +1021,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player1
+--- !u!1 &637947428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637947429}
+  m_Layer: 0
+  m_Name: Player2Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &637947429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637947428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.61, y: 0, z: 2.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 698687432}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651495578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1086,37 @@ Transform:
   - {fileID: 161078960}
   m_Father: {fileID: 698687432}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &662944284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662944285}
+  m_Layer: 0
+  m_Name: Player1Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662944285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662944284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.1, y: 0, z: 2.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 698687432}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &690071498 stripped
 GameObject:
@@ -1094,6 +1156,8 @@ Transform:
   - {fileID: 651495579}
   - {fileID: 2078601176}
   - {fileID: 1918516920}
+  - {fileID: 662944285}
+  - {fileID: 637947429}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1830,6 +1894,8 @@ MonoBehaviour:
   limit2: {fileID: 0}
   rb1: {fileID: 0}
   rb2: {fileID: 0}
+  player1StartingPos: {fileID: 0}
+  player2StartingPos: {fileID: 0}
 --- !u!114 &1178869494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,6 +1917,8 @@ MonoBehaviour:
   rootZone2: {fileID: 0}
   rootZone3: {fileID: 0}
   rootZone4: {fileID: 0}
+  player1StartingPos: {fileID: 0}
+  player2StartingPos: {fileID: 0}
 --- !u!114 &1178869495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1899,6 +1967,8 @@ MonoBehaviour:
   - {fileID: 3278499705302288885, guid: d21927c2a47cd6646b033d6e29147390, type: 3}
   limit1: {fileID: 431751460}
   limit2: {fileID: 1031519464}
+  player1StartingPos: {fileID: 0}
+  player2StartingPos: {fileID: 0}
   minTime: 3
   maxTime: 10
   minQuantity: 2
@@ -2009,6 +2079,8 @@ MonoBehaviour:
   rootZone2: {fileID: 0}
   rootZone3: {fileID: 0}
   rootZone4: {fileID: 0}
+  player1StartingPos: {fileID: 0}
+  player2StartingPos: {fileID: 0}
 --- !u!65 &1252849124
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -88,22 +88,17 @@ public class GrabBehaviour : MonoBehaviour {
         pC.grabZone = false;
         grabbingObject.position = transform.position;
         grabbingObject.SetParent(transform);
-        //grabbingObject.GetComponent<TurnipType>().trigger.enabled = false;
-        //grabbingObject.GetComponentInChildren<Rigidbody>().useGravity = false;
-        //grabbingObject.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-        //grabbingObject.GetComponent<CapsuleCollider>().enabled = true;
     }
 
     void TurnipBehaviour() {
         objectGrabbed = false;
         transform.GetChild(2).position = transform.position + transform.forward;
-        //transform.GetChild(2).GetComponentInChildren<Rigidbody>().useGravity = true;
-        //transform.GetChild(2).GetComponentInChildren<CapsuleCollider>().enabled = true;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
         transform.GetChild(2).SetParent(GameObject.Find("Turnips").transform);
     }
 
     void GrabMower(Transform grabbingObject) {
+        //particulas podadoras
         objectTag = grabbingObject.tag;
         grabbingObject.GetComponent<LawnMower>().trigger.enabled = false;
         pC.grabZone = false;
@@ -157,6 +152,7 @@ public class GrabBehaviour : MonoBehaviour {
             for (int i = 0; i < vegetablePos.Count; i++) {
                 if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
                     vegetablePos[i].GetChild(0).gameObject.SetActive(true);
+                    //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP1++;
                     break;
                 }
@@ -166,6 +162,7 @@ public class GrabBehaviour : MonoBehaviour {
             for (int i = 0; i < vegetablePos.Count; i++) {
                 if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
                     vegetablePos[i].GetChild(0).gameObject.SetActive(true);
+                    //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP2++;
                     break;
                 }
@@ -187,6 +184,7 @@ public class GrabBehaviour : MonoBehaviour {
         objectGrabbed = false;
         switch (objectTag) {
             case "Water":
+                //particulas tirar agua
                 water = false;
                 break;
             default:

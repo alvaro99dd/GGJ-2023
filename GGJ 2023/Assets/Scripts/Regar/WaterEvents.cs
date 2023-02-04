@@ -17,7 +17,8 @@ public class WaterEvents : MonoBehaviour {
         if (GameManager.instance.currentMiniGame != MiniGames.Regar) {
             return;
         }
-        firstRandomSpawn();
+        //firstRandomSpawn();
+        StartCoroutine(randomSpawn());
         SetStartingPos();
         movement = StartCoroutine(randomMovement());
     }
@@ -36,18 +37,18 @@ public class WaterEvents : MonoBehaviour {
         GameObject.FindGameObjectWithTag("Player2").transform.position = player2StartingPos.position;
     }
 
-    void firstRandomSpawn() {
-        Vector3 waterPosition = new Vector3(rb1.position.x, -1f, rb1.position.z);
-        Vector3 waterPosition2 = new Vector3(rb2.position.x, -1f, rb2.position.z);
-        tempWater = Instantiate(waterPrefab, waterPosition, Quaternion.identity);
-        tempWater2 = Instantiate(waterPrefab, waterPosition2, Quaternion.identity);
-        StartCoroutine(randomSpawn());
-    }
+    //void firstRandomSpawn() {
+    //    Vector3 waterPosition = new Vector3(rb1.position.x, -1f, rb1.position.z);
+    //    Vector3 waterPosition2 = new Vector3(rb2.position.x, -1f, rb2.position.z);
+    //    tempWater = Instantiate(waterPrefab, waterPosition, Quaternion.identity);
+    //    tempWater2 = Instantiate(waterPrefab, waterPosition2, Quaternion.identity);
+    //    StartCoroutine(randomSpawn());
+    //}
 
     IEnumerator randomSpawn() {
         while (true) {
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
-            StopCoroutine(movement);
+            StopCoroutine(movement); //Se para la nube
             rb1.velocity = Vector3.zero;
             rb2.velocity = Vector3.zero;
             spawningWater = true;
@@ -56,8 +57,8 @@ public class WaterEvents : MonoBehaviour {
             Destroy(tempWater2);
             Vector3 waterPosition = new Vector3(rb1.position.x, -1f, rb1.position.z);
             Vector3 waterPosition2 = new Vector3(rb2.position.x, -1f, rb2.position.z);
-            tempWater = Instantiate(waterPrefab, waterPosition, Quaternion.identity);
-            tempWater2 = Instantiate(waterPrefab, waterPosition2, Quaternion.identity);
+            tempWater = Instantiate(waterPrefab, waterPosition, Quaternion.identity);  //Spawn de charco player1
+            tempWater2 = Instantiate(waterPrefab, waterPosition2, Quaternion.identity);  //Spawn de charco player2
 
             yield return new WaitForSeconds(1f);
             movement = StartCoroutine(randomMovement());

@@ -146,10 +146,12 @@ public class GameManager : MonoBehaviour {
 
     public void CheckWater(bool isPlayer1) {
         if (isPlayer1) {
+            //particulas crecen raices player1
             if (++waterP1 >= waterToWin) {
                 Debug.Log("P1 Wins");
             }
         } else {
+            //particulas crecen raices player2
             if (++waterP2 >= waterToWin) {
                 Debug.Log("P2 Wins");
             }
