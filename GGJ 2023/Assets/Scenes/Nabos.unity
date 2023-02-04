@@ -596,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &155840942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,13 +648,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMiniGame: 1
   pIM: {fileID: 155840944}
+  sceneNames: []
   currentPlayers: 0
+  globalScoreP1: 0
+  globalScoreP2: 0
+  playersInButton: 0
   rootsP1: 0
   rootsP2: 0
   vegetablesP1: 0
   vegetablesP2: 0
   turnipsP1: 0
   turnipsP2: 0
+  waterP1: 0
+  waterP2: 0
+  waterToWin: 0
+  timer: 0
 --- !u!114 &155840944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6065,6 +6073,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4313827170591098562, guid: 8d4771adead0d2a4d89d4576664f3c61, type: 3}
   m_PrefabInstance: {fileID: 1061353826}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1081562913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1081562914}
+  m_Layer: 0
+  m_Name: Turnips
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1081562914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081562913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.899231, y: 21.103636, z: -37.793625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1107824713
 PrefabInstance:
   m_ObjectHideFlags: 0

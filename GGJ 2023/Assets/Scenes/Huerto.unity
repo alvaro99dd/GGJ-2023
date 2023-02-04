@@ -1457,7 +1457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &840420979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,7 +1509,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMiniGame: 2
   pIM: {fileID: 840420981}
+  sceneNames: []
   currentPlayers: 0
+  globalScoreP1: 0
+  globalScoreP2: 0
+  playersInButton: 0
+  rootsP1: 0
+  rootsP2: 0
+  vegetablesP1: 0
+  vegetablesP2: 0
+  turnipsP1: 0
+  turnipsP2: 0
+  waterP1: 0
+  waterP2: 0
+  waterToWin: 0
+  timer: 0
 --- !u!114 &840420981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1784,6 +1798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d07cf86b9cda5a44a3a9145e8e001b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnSmoothVelocity: 0
+  turnSmoothTime: 0
   minTime: 2
   maxTime: 5
   speed: 100
@@ -1826,6 +1842,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e0f5de412e3ba43b851f48ddb6a0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  mowerPrefab: {fileID: 0}
+  limit1: {fileID: 0}
+  limit2: {fileID: 0}
+  rootZone1: {fileID: 0}
+  rootZone2: {fileID: 0}
+  rootZone3: {fileID: 0}
+  rootZone4: {fileID: 0}
 --- !u!114 &1178869495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,6 +2000,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e0f5de412e3ba43b851f48ddb6a0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  mowerPrefab: {fileID: 0}
+  limit1: {fileID: 0}
+  limit2: {fileID: 0}
+  rootZone1: {fileID: 0}
+  rootZone2: {fileID: 0}
+  rootZone3: {fileID: 0}
+  rootZone4: {fileID: 0}
 --- !u!65 &1252849124
 BoxCollider:
   m_ObjectHideFlags: 0

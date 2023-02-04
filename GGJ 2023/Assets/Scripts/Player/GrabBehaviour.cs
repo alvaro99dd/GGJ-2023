@@ -100,7 +100,7 @@ public class GrabBehaviour : MonoBehaviour {
         //transform.GetChild(2).GetComponentInChildren<Rigidbody>().useGravity = true;
         //transform.GetChild(2).GetComponentInChildren<CapsuleCollider>().enabled = true;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
-        transform.GetChild(2).SetParent(null);
+        transform.GetChild(2).SetParent(GameObject.Find("Turnips").transform);
     }
 
     void GrabMower(Transform grabbingObject) {
@@ -120,7 +120,7 @@ public class GrabBehaviour : MonoBehaviour {
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(2).GetComponent<LawnMower>().dir = transform.forward;
         transform.GetChild(2).GetComponent<LawnMower>().StartCoroutine(transform.GetChild(2).GetComponent<LawnMower>().GetGrabZone());
-        transform.GetChild(2).SetParent(null);
+        transform.GetChild(2).SetParent(GameObject.Find("Mowers").transform);
         mowerPlaceHolder.SetActive(false);
     }
 
@@ -161,7 +161,7 @@ public class GrabBehaviour : MonoBehaviour {
                     break;
                 }
             }
-            if (GameManager.instance.vegetablesP1 >= vegetablePos.Count) Debug.Log(transform.parent.tag + " Wins!");
+            if (GameManager.instance.vegetablesP1 >= vegetablePos.Count) GameManager.instance.EndGame();
         } else {
             for (int i = 0; i < vegetablePos.Count; i++) {
                 if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
@@ -170,14 +170,17 @@ public class GrabBehaviour : MonoBehaviour {
                     break;
                 }
             }
-            if (GameManager.instance.vegetablesP2 >= vegetablePos.Count) Debug.Log(transform.parent.tag + " Wins!");
+            if (GameManager.instance.vegetablesP2 >= vegetablePos.Count) GameManager.instance.EndGame();
         }
-
     }
     #endregion
 
     void WaterBehaviour() {
-        if (++waterCount >= waterToWin) Debug.Log(transform.parent.tag + " Wins!");
+        bool isPlayer1 = true;
+        if (transform.parent.CompareTag("Player2")) {
+            isPlayer1 = false;
+        }
+        GameManager.instance.CheckWater(isPlayer1);
     }
 
     public void ObjectFalledOff() {

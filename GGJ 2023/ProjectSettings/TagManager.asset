@@ -14,6 +14,9 @@ TagManager:
   - VegetablePlayer2
   - Mower
   - Turnip
+  - Play
+  - Controls
+  - Exit
   layers:
   - Default
   - TransparentFX

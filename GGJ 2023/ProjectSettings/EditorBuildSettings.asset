@@ -6,7 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/Lobby.unity
+    guid: a26552528bb8b7649b476be38e7bdcdc
+  - enabled: 1
+    path: Assets/Scenes/Huerto.unity
+    guid: 824583941b74ef546bb549b9bdea7d55
+  - enabled: 1
+    path: Assets/Scenes/Nabos.unity
+    guid: 02b225aa712dc624caea1723813bc61c
+  - enabled: 1
+    path: Assets/Scenes/Podadoras.unity
+    guid: bab920c62f582e442b771e038f3a38e1
+  - enabled: 1
+    path: Assets/Scenes/Regar.unity
+    guid: edb959f4e83424f42b3d387cd9e57f0b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 062bb58189762fd459eea7ee488cb0f5, type: 2}

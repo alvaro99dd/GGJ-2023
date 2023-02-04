@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour {
     public BoxCollider bC;
 
     private void Start() {
+        DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();
         gB = GetComponentInChildren<GrabBehaviour>();
-        earthquake = GameObject.Find("MiniGameEvents").GetComponent<EarthQuake>();
     }
 
     private void FixedUpdate() {
@@ -27,6 +27,13 @@ public class PlayerController : MonoBehaviour {
             CheckEarthquake();
         }
         CheckPrompt();
+        GetEarthQuake();
+    }
+
+    void GetEarthQuake() {
+        if (GameManager.instance.currentMiniGame == MiniGames.Regar && earthquake == null) {
+            earthquake = GameObject.Find("MiniGameEvents").GetComponent<EarthQuake>();
+        }
     }
 
     void Movement() {
@@ -101,6 +108,24 @@ public class PlayerController : MonoBehaviour {
             }
         } else if (other.CompareTag("Water") || other.CompareTag("Vegetable") || other.CompareTag("Mower") || other.CompareTag("Turnip")) {
             grabZone = true;
+        }
+
+        if (other.CompareTag("Play")) {
+            if (++GameManager.instance.playersInButton == 2) {
+                GameManager.instance.LoadMinigame();
+            }
+        }
+
+        if (other.CompareTag("Controls")) {
+            if (++GameManager.instance.playersInButton == 2) {
+
+            }
+        }
+
+        if (other.CompareTag("Exit")) {
+            if (++GameManager.instance.playersInButton == 2) {
+                Application.Quit();
+            }
         }
     }
 

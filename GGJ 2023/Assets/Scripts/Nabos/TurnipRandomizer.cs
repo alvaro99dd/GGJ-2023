@@ -6,7 +6,9 @@ public class TurnipRandomizer : MonoBehaviour {
     public Transform campoNabos;
 
     private void Start() {
-        GetRandomTurnips();
+        if (GameManager.instance.currentMiniGame == MiniGames.Nabos) {
+            GetRandomTurnips();
+        }
     }
 
     void GetRandomTurnips() {
