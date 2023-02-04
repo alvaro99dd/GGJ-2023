@@ -65,7 +65,7 @@ public class LawnMower : MonoBehaviour
             dir = GetRandomDirection();
         }
 
-        if (collision.transform.CompareTag("Wall")) {
+        if (collision.transform.CompareTag("Wall") || collision.transform.CompareTag("Mower")) {
             dir = GetRandomDirection();
         }
 

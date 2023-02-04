@@ -2096,8 +2096,8 @@ MonoBehaviour:
   rootZone2: {fileID: 1080941309}
   rootZone3: {fileID: 2021129032}
   rootZone4: {fileID: 1490549918}
-  player1StartingPos: {fileID: 0}
-  player2StartingPos: {fileID: 0}
+  player1StartingPos: {fileID: 505614313}
+  player2StartingPos: {fileID: 289793634}
 --- !u!114 &1391509989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,6 +2634,9 @@ MonoBehaviour:
   waterP2: 0
   waterToWin: 0
   timer: 0
+  player1Wins: 
+  player2Wins: 
+  gameDraw: 
 --- !u!114 &1924014947
 MonoBehaviour:
   m_ObjectHideFlags: 0

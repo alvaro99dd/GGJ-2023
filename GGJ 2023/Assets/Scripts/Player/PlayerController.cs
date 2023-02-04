@@ -116,7 +116,10 @@ public class PlayerController : MonoBehaviour {
 
         if (other.CompareTag("Play")) {
             if (++GameManager.instance.playersInButton == 2) {
-                GameManager.instance.LoadMinigame();
+                CanvasManager.instance.playText.SetActive(false);
+                GameManager.instance.StartCoroutine(GameManager.instance.LobbyCountDown());
+            } else {
+                CanvasManager.instance.playText.SetActive(true);
             }
         }
 
@@ -138,6 +141,11 @@ public class PlayerController : MonoBehaviour {
             dropZone = false;
         } else {
             grabZone = false;
+        }
+
+        if (other.CompareTag("Play")) {
+            GameManager.instance.playersInButton--;
+            CanvasManager.instance.playText.SetActive(false);
         }
     }
 }

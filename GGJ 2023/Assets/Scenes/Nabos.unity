@@ -9605,8 +9605,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   campoNabos: {fileID: 418637436}
-  player1StartingPos: {fileID: 0}
-  player2StartingPos: {fileID: 0}
+  player1StartingPos: {fileID: 346976954}
+  player2StartingPos: {fileID: 171189145}
 --- !u!1001 &1774996043
 PrefabInstance:
   m_ObjectHideFlags: 0

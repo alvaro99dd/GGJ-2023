@@ -1588,6 +1588,9 @@ MonoBehaviour:
   waterP2: 0
   waterToWin: 0
   timer: 0
+  player1Wins: 
+  player2Wins: 
+  gameDraw: 
 --- !u!114 &840420981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1967,8 +1970,8 @@ MonoBehaviour:
   - {fileID: 3278499705302288885, guid: d21927c2a47cd6646b033d6e29147390, type: 3}
   limit1: {fileID: 431751460}
   limit2: {fileID: 1031519464}
-  player1StartingPos: {fileID: 0}
-  player2StartingPos: {fileID: 0}
+  player1StartingPos: {fileID: 662944285}
+  player2StartingPos: {fileID: 637947429}
   minTime: 3
   maxTime: 10
   minQuantity: 2

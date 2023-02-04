@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum MiniGames {
     Regar, Nabos, Huertos, Podadoras, Lobby
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour {
     public int waterP1, waterP2, waterToWin;
     public float timer;
 
+    public string player1WinsRound, player2WinsRound, roundDraw;
+    public string player1WinsGame, player2WinsGame, gameDraw;
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         if (instance == null) {
@@ -36,13 +40,43 @@ public class GameManager : MonoBehaviour {
         obj.transform.tag = $"Player{currentPlayers}";
     }
 
+    public IEnumerator LobbyCountDown() {
+        CanvasManager.instance.startingSoon.SetActive(true);
+        CanvasManager.instance.countdown.SetActive(true);
+        while (CanvasManager.instance.countdownNumber > 0) {
+            yield return new WaitForSeconds(1f);
+            CanvasManager.instance.countdownNumber--;
+            CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
+        }
+        CanvasManager.instance.countdownNumber = 3;
+        CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
+        CanvasManager.instance.startingSoon.SetActive(false);
+        CanvasManager.instance.countdown.SetActive(false);
+        LoadMinigame();
+    }
+
+    public IEnumerator GameCountDown() {
+        CanvasManager.instance.playerWins.SetActive(true);
+        CanvasManager.instance.countdown.SetActive(true);
+        while (CanvasManager.instance.countdownNumber > 0) {
+            yield return new WaitForSeconds(1f);
+            CanvasManager.instance.countdownNumber--;
+            CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
+        }
+        CanvasManager.instance.countdownNumber = 3;
+        CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
+        CanvasManager.instance.countdown.SetActive(false);
+        CanvasManager.instance.playerWins.SetActive(false);
+        LoadMinigame();
+    }
+
     public void LoadMinigame() {
         int randomMiniGame = Random.Range(0, sceneNames.Count);
         SceneManager.LoadScene(sceneNames[randomMiniGame]);
         switch (sceneNames[randomMiniGame]) {
-            case "Regar":
+            case "Regar-Montaje":
                 currentMiniGame = MiniGames.Regar;
-                sceneNames.Remove("Regar");
+                sceneNames.Remove("Regar-Montaje");
                 break;
             case "Nabos":
                 currentMiniGame = MiniGames.Nabos;
@@ -63,20 +97,23 @@ public class GameManager : MonoBehaviour {
     public void AddGlobalScore(bool isPlayer1) {
         if (isPlayer1) {
             if (++globalScoreP1 >= 2) {
-                Debug.Log("Player1 Wins!");
+                CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsGame;
                 Time.timeScale = 0f;
             }
         } else {
             if (++globalScoreP2 >= 2) {
-                Debug.Log("Player2 Wins!");
+                CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsGame;
                 Time.timeScale = 0f;
             }
         }
     }
 
     public IEnumerator StartTimer() {
+        timer = 0;
+        CanvasManager.instance.timer.SetActive(true);
         while (timer <= 60) {
             timer += Time.deltaTime;
+            CanvasManager.instance.timer.GetComponent<Text>().text = ((int)timer).ToString();
             yield return new WaitForEndOfFrame();
         }
         timer = 0;
@@ -89,44 +126,56 @@ public class GameManager : MonoBehaviour {
         switch (currentMiniGame) {
             case MiniGames.Regar:
                 if (waterP1 > waterP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsRound;
                     Debug.Log("P1 Wins");
                 } else if (waterP1 < waterP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsRound;
                     Debug.Log("P2 Wins");
                     isPlayer1 = false;
                 } else {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = roundDraw;
                     Debug.Log("Draw");
                     draw = true;
                 }
                 break;
             case MiniGames.Nabos:
                 if (turnipsP1 > turnipsP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsRound;
                     Debug.Log("P1 Wins");
                 } else if (turnipsP1 < turnipsP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsRound;
                     Debug.Log("P2 Wins");
                     isPlayer1 = false;
                 } else {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = roundDraw;
                     Debug.Log("Draw");
                     draw = true;
                 }
                 break;
             case MiniGames.Huertos:
                 if (vegetablesP1 > vegetablesP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsRound;
                     Debug.Log("P1 Wins");
                 } else if (vegetablesP1 < vegetablesP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsRound;
                     Debug.Log("P2 Wins");
                     isPlayer1 = false;
                 } else {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = roundDraw;
                     Debug.Log("Draw");
                     draw = true;
                 }
                 break;
             case MiniGames.Podadoras:
                 if (rootsP1 > rootsP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsRound;
                     Debug.Log("P1 Wins");
                 } else if (rootsP1 < rootsP2) {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsRound;
                     Debug.Log("P2 Wins");
                     isPlayer1 = false;
                 } else {
+                    CanvasManager.instance.playerWins.GetComponent<Text>().text = roundDraw;
                     Debug.Log("Draw");
                     draw = true;
                 }
@@ -138,9 +187,12 @@ public class GameManager : MonoBehaviour {
         }
 
         if (sceneNames.Count > 0) {
-            LoadMinigame();
+            StopCoroutine(StartTimer());
+            timer = 60;
+            StartCoroutine(GameCountDown());
         } else {
-            Debug.Log("Game ended in Draw!");
+            CanvasManager.instance.playerWins.GetComponent<Text>().text = gameDraw;
+            Time.timeScale = 0f;
         }
     }
 
@@ -148,12 +200,12 @@ public class GameManager : MonoBehaviour {
         if (isPlayer1) {
             //particulas crecen raices player1
             if (++waterP1 >= waterToWin) {
-                Debug.Log("P1 Wins");
+                EndGame();
             }
         } else {
             //particulas crecen raices player2
             if (++waterP2 >= waterToWin) {
-                Debug.Log("P2 Wins");
+                EndGame();
             }
         }
     }
@@ -161,11 +213,11 @@ public class GameManager : MonoBehaviour {
     public void CheckRoots(bool isPlayer1) {
         if (isPlayer1) {
             if (--rootsP1 <= 0) {
-                Debug.Log("P2 Wins");
+                EndGame();
             }
         } else {
             if (--rootsP2 <= 0) {
-                Debug.Log("P1 Wins");
+                EndGame();
             }
         }
     }
