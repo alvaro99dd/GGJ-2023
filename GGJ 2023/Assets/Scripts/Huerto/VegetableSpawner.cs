@@ -13,7 +13,7 @@ public class VegetableSpawner : MonoBehaviour {
         if (GameManager.instance.currentMiniGame != MiniGames.Huertos) {
             return;
         }
-        //SetStartingPos();
+        SetStartingPos();
         StartCoroutine(randomSpawn());
     }
 
