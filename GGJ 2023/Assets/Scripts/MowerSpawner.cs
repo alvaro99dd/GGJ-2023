@@ -6,6 +6,7 @@ public class MowerSpawner : MonoBehaviour {
     public float minTime, maxTime;
     public GameObject mowerPrefab;
     public Transform limit1, limit2, rootZone1, rootZone2, rootZone3, rootZone4;
+    public Transform player1StartingPos, player2StartingPos;
 
     bool isInPlayer1Root(Vector3 randomPos) => Mathf.Abs(rootZone1.position.x) > Mathf.Abs(randomPos.x) && Mathf.Abs(rootZone2.position.x) < Mathf.Abs(randomPos.x) && rootZone1.position.z > randomPos.z && rootZone2.position.z<randomPos.z;
     bool isInPlayer2Root(Vector3 randomPos) => Mathf.Abs(rootZone3.position.x) > Mathf.Abs(randomPos.x) && Mathf.Abs(rootZone4.position.x) < Mathf.Abs(randomPos.x) && rootZone3.position.z > randomPos.z && rootZone4.position.z < randomPos.z;
@@ -13,7 +14,13 @@ public class MowerSpawner : MonoBehaviour {
     private void Start() {
         if (GameManager.instance.currentMiniGame == MiniGames.Podadoras) {
             StartCoroutine(randomSpawn());
+            SetStartingPos();
         }
+    }
+
+    void SetStartingPos() {
+        GameObject.FindGameObjectWithTag("Player1").transform.position = player1StartingPos.position;
+        GameObject.FindGameObjectWithTag("Player2").transform.position = player2StartingPos.position;
     }
 
     IEnumerator randomSpawn() {

@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class TurnipRandomizer : MonoBehaviour {
     public Transform campoNabos;
+    public Transform player1StartingPos, player2StartingPos;
 
     private void Start() {
         if (GameManager.instance.currentMiniGame == MiniGames.Nabos) {
             GetRandomTurnips();
+            SetStartingPos();
         }
+    }
+
+    void SetStartingPos() {
+        GameObject.FindGameObjectWithTag("Player1").transform.position = player1StartingPos.position;
+        GameObject.FindGameObjectWithTag("Player2").transform.position = player2StartingPos.position;
     }
 
     void GetRandomTurnips() {

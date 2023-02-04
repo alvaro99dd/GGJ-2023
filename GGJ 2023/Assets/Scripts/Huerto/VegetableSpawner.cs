@@ -5,6 +5,7 @@ using UnityEngine;
 public class VegetableSpawner : MonoBehaviour {
     public GameObject[ ] VegetablePrefabs;
     public Transform limit1, limit2;
+    public Transform player1StartingPos, player2StartingPos;
     public float minTime, maxTime;
     public int minQuantity, maxQuantity;
 
@@ -12,7 +13,13 @@ public class VegetableSpawner : MonoBehaviour {
         if (GameManager.instance.currentMiniGame != MiniGames.Huertos) {
             return;
         }
+        SetStartingPos();
         StartCoroutine(randomSpawn());
+    }
+
+    void SetStartingPos() {
+        GameObject.FindGameObjectWithTag("Player1").transform.position = player1StartingPos.position; 
+        GameObject.FindGameObjectWithTag("Player2").transform.position = player2StartingPos.position; 
     }
 
     IEnumerator randomSpawn() {

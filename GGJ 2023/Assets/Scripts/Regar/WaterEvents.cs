@@ -11,12 +11,14 @@ public class WaterEvents : MonoBehaviour {
     Coroutine movement;
     bool spawningWater = false;
     public Rigidbody rb1, rb2;
+    public Transform player1StartingPos, player2StartingPos;
 
     private void Start() {
         if (GameManager.instance.currentMiniGame != MiniGames.Regar) {
             return;
         }
         firstRandomSpawn();
+        SetStartingPos();
         movement = StartCoroutine(randomMovement());
     }
 
@@ -27,6 +29,11 @@ public class WaterEvents : MonoBehaviour {
         if (!spawningWater) {
             Movement(randomDir, randomDir2);
         }
+    }
+
+    void SetStartingPos() {
+        GameObject.FindGameObjectWithTag("Player1").transform.position = player1StartingPos.position;
+        GameObject.FindGameObjectWithTag("Player2").transform.position = player2StartingPos.position;
     }
 
     void firstRandomSpawn() {
