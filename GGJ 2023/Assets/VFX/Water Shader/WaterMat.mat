@@ -92,6 +92,7 @@ Material:
     - _Choppiness: 0.015
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _Clip: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -105,6 +106,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _MultiplyAlpha: 0.755
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -121,11 +123,11 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DarkFoamColor: {r: 0.29659134, g: 0.3588762, b: 0.4056604, a: 1}
+    - _DarkFoamColor: {r: 0.29659128, g: 0.35887614, b: 0.40566033, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LightFoamColor: {r: 0.79432184, g: 0.90785086, b: 0.9622642, a: 0}
+    - _LightFoamColor: {r: 0.79432184, g: 0.90785086, b: 0.9622641, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaterColor: {r: 0.26713243, g: 0.67236114, b: 0.8207547, a: 0}
+    - _WaterColor: {r: 0.2671322, g: 0.67236114, b: 0.8207547, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5622307180804596110
 MonoBehaviour:
