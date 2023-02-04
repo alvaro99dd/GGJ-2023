@@ -91,7 +91,7 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void TurnipBehaviour() {
-        objectGrabbed = false;
+        StartCoroutine(SetObjectGrabbed());
         transform.GetChild(2).position = transform.position + transform.forward;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
         transform.GetChild(2).SetParent(GameObject.Find("Turnips").transform);
@@ -111,7 +111,7 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void MowerBehaviour() {
-        objectGrabbed = false;
+        StartCoroutine(SetObjectGrabbed());
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(2).GetComponent<LawnMower>().dir = transform.forward;
         transform.GetChild(2).GetComponent<LawnMower>().StartCoroutine(transform.GetChild(2).GetComponent<LawnMower>().GetGrabZone());
@@ -146,7 +146,7 @@ public class GrabBehaviour : MonoBehaviour {
             return;
         }
         vegetable = false;
-        objectGrabbed = false;
+        StartCoroutine(SetObjectGrabbed());
         vegetablePlaceHolder.SetActive(false);
         if (transform.parent.CompareTag("Player1")) {
             for (int i = 0; i < vegetablePos.Count; i++) {
@@ -171,6 +171,11 @@ public class GrabBehaviour : MonoBehaviour {
         }
     }
     #endregion
+
+    IEnumerator SetObjectGrabbed() {
+        yield return new WaitForSeconds(0.5f);
+        objectGrabbed = false;
+    }
 
     void WaterBehaviour() {
         bool isPlayer1 = true;

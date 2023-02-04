@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public PlayerInputManager pIM;
     public List<string> sceneNames;
+    public Material mat1, mat2;
 
     public int currentPlayers;
     public int globalScoreP1, globalScoreP2;
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour {
     public int turnipsP1, turnipsP2;
     public int waterP1, waterP2, waterToWin;
     public float timer;
+
+    bool finishingGame;
+    int randomMiniGame;
 
     public string player1WinsRound, player2WinsRound, roundDraw;
     public string player1WinsGame, player2WinsGame, gameDraw;
@@ -40,7 +44,28 @@ public class GameManager : MonoBehaviour {
         obj.transform.tag = $"Player{currentPlayers}";
     }
 
+    void SwitchImage() {
+        randomMiniGame = Random.Range(0, sceneNames.Count);
+        CanvasManager.instance.nextMiniGame.SetActive(true);
+        CanvasManager.instance.image.SetActive(true);
+        switch (sceneNames[randomMiniGame]) {
+            case "Regar-Montaje":
+                CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.regar;
+                break;
+            case "Nabos":
+                CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.nabos;
+                break;
+            case "Huerto":
+                CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.huertos;
+                break;
+            case "Podadoras":
+                CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.podadoras;
+                break;
+        }
+    }
+
     public IEnumerator LobbyCountDown() {
+        SwitchImage();
         CanvasManager.instance.startingSoon.SetActive(true);
         CanvasManager.instance.countdown.SetActive(true);
         while (CanvasManager.instance.countdownNumber > 0) {
@@ -48,14 +73,17 @@ public class GameManager : MonoBehaviour {
             CanvasManager.instance.countdownNumber--;
             CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
         }
-        CanvasManager.instance.countdownNumber = 3;
+        CanvasManager.instance.countdownNumber = 5;
         CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
         CanvasManager.instance.startingSoon.SetActive(false);
         CanvasManager.instance.countdown.SetActive(false);
+        CanvasManager.instance.image.SetActive(false);
+        CanvasManager.instance.nextMiniGame.SetActive(false);
         LoadMinigame();
     }
 
     public IEnumerator GameCountDown() {
+        SwitchImage();
         CanvasManager.instance.playerWins.SetActive(true);
         CanvasManager.instance.countdown.SetActive(true);
         while (CanvasManager.instance.countdownNumber > 0) {
@@ -63,15 +91,15 @@ public class GameManager : MonoBehaviour {
             CanvasManager.instance.countdownNumber--;
             CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
         }
-        CanvasManager.instance.countdownNumber = 3;
+        CanvasManager.instance.countdownNumber = 5;
         CanvasManager.instance.countdown.GetComponent<Text>().text = CanvasManager.instance.countdownNumber.ToString();
         CanvasManager.instance.countdown.SetActive(false);
         CanvasManager.instance.playerWins.SetActive(false);
+        CanvasManager.instance.nextMiniGame.SetActive(false);
         LoadMinigame();
     }
 
     public void LoadMinigame() {
-        int randomMiniGame = Random.Range(0, sceneNames.Count);
         SceneManager.LoadScene(sceneNames[randomMiniGame]);
         switch (sceneNames[randomMiniGame]) {
             case "Regar-Montaje":
@@ -84,13 +112,14 @@ public class GameManager : MonoBehaviour {
                 break;
             case "Huerto":
                 currentMiniGame = MiniGames.Huertos;
-                sceneNames.Remove("Huertos");
+                sceneNames.Remove("Huerto");
                 break;
             case "Podadoras":
                 currentMiniGame = MiniGames.Podadoras;
                 sceneNames.Remove("Podadoras");
                 break;
         }
+        finishingGame = false;
         StartCoroutine(StartTimer());
     }
 
@@ -121,6 +150,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public void EndGame() {
+        if (finishingGame) {
+            return;
+        }
+        finishingGame = true;
         bool isPlayer1 = true;
         bool draw = false;
         switch (currentMiniGame) {

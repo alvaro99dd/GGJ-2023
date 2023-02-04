@@ -10,6 +10,14 @@ public class CanvasManager : MonoBehaviour
     public GameObject countdown;
     public GameObject timer;
     public GameObject playerWins;
+    public GameObject nextMiniGame;
+    public GameObject image;
+
+    [Header("Minigames Images")]
+    public Sprite nabos;
+    public Sprite regar;
+    public Sprite huertos;
+    public Sprite podadoras;
 
     public int countdownNumber;
 

@@ -14,11 +14,18 @@ public class PlayerController : MonoBehaviour {
     public bool dropZone, grabZone, stun;
     public EarthQuake earthquake;
     public BoxCollider bC;
+    public SkinnedMeshRenderer skm;
 
     private void Start() {
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();
         gB = GetComponentInChildren<GrabBehaviour>();
+        skm = GetComponentInChildren<SkinnedMeshRenderer>();
+        if (GameManager.instance.currentPlayers == 1) {
+            skm.material = GameManager.instance.mat1;
+        } else {
+            skm.material = GameManager.instance.mat2;
+        }
     }
 
     private void FixedUpdate() {
