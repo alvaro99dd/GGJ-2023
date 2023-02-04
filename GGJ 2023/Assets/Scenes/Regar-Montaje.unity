@@ -8218,8 +8218,8 @@ MonoBehaviour:
   limit2: {fileID: 1955619255}
   rb1: {fileID: 771941672}
   rb2: {fileID: 970386320}
-  player1StartingPos: {fileID: 0}
-  player2StartingPos: {fileID: 0}
+  player1StartingPos: {fileID: 2079933538}
+  player2StartingPos: {fileID: 1004114264}
 --- !u!114 &1258041192
 MonoBehaviour:
   m_ObjectHideFlags: 0
