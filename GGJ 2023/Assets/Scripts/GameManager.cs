@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour {
         CanvasManager.instance.countdown.SetActive(false);
         CanvasManager.instance.playerWins.SetActive(false);
         CanvasManager.instance.nextMiniGame.SetActive(false);
+        CanvasManager.instance.image.SetActive(false);
         LoadMinigame();
     }
 

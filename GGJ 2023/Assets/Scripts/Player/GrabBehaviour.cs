@@ -31,6 +31,7 @@ public class GrabBehaviour : MonoBehaviour {
     void CheckObject(Transform grabbingObject) {
         switch (grabbingObject.tag) {
             case "Water":
+                pC.anim.SetTrigger("GrabWater");
                 water = true;
                 objectTag = grabbingObject.tag;
                 objectGrabbed = true;
@@ -91,7 +92,7 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void TurnipBehaviour() {
-        StartCoroutine(SetObjectGrabbed());
+        objectGrabbed = false;
         transform.GetChild(2).position = transform.position + transform.forward;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
         transform.GetChild(2).SetParent(GameObject.Find("Turnips").transform);
@@ -99,6 +100,7 @@ public class GrabBehaviour : MonoBehaviour {
 
     void GrabMower(Transform grabbingObject) {
         //particulas podadoras
+        pC.anim.SetTrigger("GrabPodadora");
         objectTag = grabbingObject.tag;
         grabbingObject.GetComponent<LawnMower>().trigger.enabled = false;
         pC.grabZone = false;
@@ -111,7 +113,8 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void MowerBehaviour() {
-        StartCoroutine(SetObjectGrabbed());
+        pC.anim.SetTrigger("ThrowPodadora");
+        objectGrabbed = false;
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(2).GetComponent<LawnMower>().dir = transform.forward;
         transform.GetChild(2).GetComponent<LawnMower>().StartCoroutine(transform.GetChild(2).GetComponent<LawnMower>().GetGrabZone());
@@ -131,6 +134,7 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void GrabVegetable(Transform vegetable) {
+        pC.anim.SetTrigger("GrabObject");
         vegetablePlaceHolder.SetActive(true);
         if (!vegetable.parent.TryGetComponent(out PlayerVegetable pV)) {
             Destroy(vegetable.gameObject);
@@ -145,8 +149,9 @@ public class GrabBehaviour : MonoBehaviour {
         if (huerto.parent.name != huertoName) {
             return;
         }
+        pC.anim.SetTrigger("ThrowObject");
         vegetable = false;
-        StartCoroutine(SetObjectGrabbed());
+        objectGrabbed = false;
         vegetablePlaceHolder.SetActive(false);
         if (transform.parent.CompareTag("Player1")) {
             for (int i = 0; i < vegetablePos.Count; i++) {
@@ -172,12 +177,13 @@ public class GrabBehaviour : MonoBehaviour {
     }
     #endregion
 
-    IEnumerator SetObjectGrabbed() {
-        yield return new WaitForSeconds(0.5f);
-        objectGrabbed = false;
-    }
+    //IEnumerator SetObjectGrabbed() {
+    //    yield return new WaitForSeconds(0.5f);
+    //    objectGrabbed = false;
+    //}
 
     void WaterBehaviour() {
+        pC.anim.SetTrigger("ThrowWater");
         bool isPlayer1 = true;
         if (transform.parent.CompareTag("Player2")) {
             isPlayer1 = false;

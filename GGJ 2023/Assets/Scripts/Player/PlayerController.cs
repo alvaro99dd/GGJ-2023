@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     Vector3 direction;
     Rigidbody rb;
     Coroutine grabbing, earthquakeCoroutine;
+    public Animator anim;
     public GrabBehaviour gB;
     public bool dropZone, grabZone, stun;
     public EarthQuake earthquake;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         gB = GetComponentInChildren<GrabBehaviour>();
         skm = GetComponentInChildren<SkinnedMeshRenderer>();
+        anim = GetComponentInChildren<Animator>();
         if (GameManager.instance.currentPlayers == 1) {
             skm.material = GameManager.instance.mat1;
         } else {
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour {
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
         //Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         rb.velocity = direction * speed * Time.fixedDeltaTime;
+        anim.SetFloat("Speed", rb.velocity.magnitude);
         if (!rb.velocity.Equals(Vector3.zero)) {
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
