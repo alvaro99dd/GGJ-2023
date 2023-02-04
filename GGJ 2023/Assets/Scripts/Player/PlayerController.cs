@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     public EarthQuake earthquake;
     public BoxCollider bC;
     public SkinnedMeshRenderer skm;
+    public GameObject cube;
 
     private void Start() {
         DontDestroyOnLoad(gameObject);
@@ -85,19 +86,23 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator StunBehaviour() {
         stun = true;
+        anim.SetBool("Stun", true);
         //particulas stun aparecen
         yield return new WaitForSeconds(earthquake.stunDuration);
         stun = false;
+        anim.SetBool("Stun", false);
         //particulas stun fuera
         earthquakeCoroutine = null;
     }
 
     public IEnumerator StunPlayer(float stunDuration) {
         stun = true;
+        anim.SetBool("Stun", true);
         //particulas stun aparecen
         yield return new WaitForSeconds(stunDuration);
         //particulas stun fuera
         stun = false;
+        anim.SetBool("Stun", false);
     }
 
     void CheckPrompt() {

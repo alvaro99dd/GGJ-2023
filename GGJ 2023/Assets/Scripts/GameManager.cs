@@ -101,21 +101,73 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadMinigame() {
+        GameObject p1 = GameObject.FindGameObjectWithTag("Player1");
+        GameObject p2 = GameObject.FindGameObjectWithTag("Player2");
+
+        switch (currentMiniGame) {
+            case MiniGames.Nabos:
+                if (p1.GetComponentInChildren<GrabBehaviour>().objectGrabbed) {
+                    p1.GetComponentInChildren<GrabBehaviour>().objectGrabbed = false;
+                    Destroy(p1.GetComponentInChildren<GrabBehaviour>().transform.GetChild(2).gameObject);
+                }
+                if (p2.GetComponentInChildren<GrabBehaviour>().objectGrabbed) {
+                    p2.GetComponentInChildren<GrabBehaviour>().objectGrabbed = false;
+                    Destroy(p2.GetComponentInChildren<GrabBehaviour>().transform.GetChild(2).gameObject);
+                }
+                break;
+            case MiniGames.Huertos:
+                if (p1.GetComponentInChildren<GrabBehaviour>().objectGrabbed) {
+                    p1.GetComponentInChildren<GrabBehaviour>().objectGrabbed = false;
+                    p1.GetComponentInChildren<GrabBehaviour>().vegetablePlaceHolder.SetActive(false);
+                }
+                if (p2.GetComponentInChildren<GrabBehaviour>().objectGrabbed) {
+                    p2.GetComponentInChildren<GrabBehaviour>().objectGrabbed = false;
+                    p2.GetComponentInChildren<GrabBehaviour>().vegetablePlaceHolder.SetActive(false);
+                }
+                break;
+            case MiniGames.Podadoras:
+                if (p1.GetComponentInChildren<GrabBehaviour>().objectGrabbed) {
+                    p1.GetComponentInChildren<GrabBehaviour>().objectGrabbed = false;
+                    p1.GetComponentInChildren<GrabBehaviour>().mowerPlaceHolder.SetActive(false);
+                }
+                if (p2.GetComponentInChildren<GrabBehaviour>().objectGrabbed) {
+                    p2.GetComponentInChildren<GrabBehaviour>().objectGrabbed = false;
+                    p2.GetComponentInChildren<GrabBehaviour>().mowerPlaceHolder.SetActive(false);
+                }
+                break;
+        }
+
         SceneManager.LoadScene(sceneNames[randomMiniGame]);
         switch (sceneNames[randomMiniGame]) {
             case "Regar-Montaje":
+                p1.GetComponentInChildren<Animator>().SetBool("SmallObject", true);
+                p1.GetComponentInChildren<PlayerController>().cube.SetActive(true);
+                p2.GetComponentInChildren<Animator>().SetBool("SmallObject", true);
+                p2.GetComponentInChildren<PlayerController>().cube.SetActive(true);
                 currentMiniGame = MiniGames.Regar;
                 sceneNames.Remove("Regar-Montaje");
                 break;
             case "Nabos":
+                p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p1.GetComponentInChildren<PlayerController>().cube.SetActive(false);
+                p2.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Nabos;
                 sceneNames.Remove("Nabos");
                 break;
             case "Huerto":
+                p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p1.GetComponentInChildren<PlayerController>().cube.SetActive(false);
+                p2.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Huertos;
                 sceneNames.Remove("Huerto");
                 break;
             case "Podadoras":
+                p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p1.GetComponentInChildren<PlayerController>().cube.SetActive(false);
+                p2.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Podadoras;
                 sceneNames.Remove("Podadoras");
                 break;

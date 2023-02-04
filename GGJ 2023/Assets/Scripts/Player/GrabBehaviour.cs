@@ -8,7 +8,7 @@ public class GrabBehaviour : MonoBehaviour {
     public bool objectGrabbed;
     public bool water, vegetable, turnip;
 
-    GameObject vegetablePlaceHolder, mowerPlaceHolder;
+    public GameObject vegetablePlaceHolder, mowerPlaceHolder;
     public int waterCount, waterToWin;
     public List<Transform> vegetablePos;
     public Transform huerto;
@@ -85,6 +85,8 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void GrabTurnip(Transform grabbingObject) {
+        pC.anim.SetTrigger("GrabTurnip");
+        pC.anim.SetBool("SmallObject", true);
         objectTag = grabbingObject.tag;
         pC.grabZone = false;
         grabbingObject.position = transform.position;
@@ -92,6 +94,8 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void TurnipBehaviour() {
+        pC.anim.SetTrigger("ThrowObject");
+        pC.anim.SetBool("SmallObject", false);
         objectGrabbed = false;
         transform.GetChild(2).position = transform.position + transform.forward;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
@@ -101,6 +105,7 @@ public class GrabBehaviour : MonoBehaviour {
     void GrabMower(Transform grabbingObject) {
         //particulas podadoras
         pC.anim.SetTrigger("GrabPodadora");
+        pC.anim.SetBool("Podadora", true);
         objectTag = grabbingObject.tag;
         grabbingObject.GetComponent<LawnMower>().trigger.enabled = false;
         pC.grabZone = false;
@@ -114,6 +119,7 @@ public class GrabBehaviour : MonoBehaviour {
 
     void MowerBehaviour() {
         pC.anim.SetTrigger("ThrowPodadora");
+        pC.anim.SetBool("Podadora", false);
         objectGrabbed = false;
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(2).GetComponent<LawnMower>().dir = transform.forward;
@@ -135,6 +141,7 @@ public class GrabBehaviour : MonoBehaviour {
 
     void GrabVegetable(Transform vegetable) {
         pC.anim.SetTrigger("GrabObject");
+        pC.anim.SetBool("SmallObject", true);
         vegetablePlaceHolder.SetActive(true);
         if (!vegetable.parent.TryGetComponent(out PlayerVegetable pV)) {
             Destroy(vegetable.gameObject);
@@ -150,6 +157,7 @@ public class GrabBehaviour : MonoBehaviour {
             return;
         }
         pC.anim.SetTrigger("ThrowObject");
+        pC.anim.SetBool("SmallObject", false);
         vegetable = false;
         objectGrabbed = false;
         vegetablePlaceHolder.SetActive(false);
