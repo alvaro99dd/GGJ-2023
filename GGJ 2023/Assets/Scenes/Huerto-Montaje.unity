@@ -12083,10 +12083,10 @@ MonoBehaviour:
   limit2: {fileID: 1031519464}
   player1StartingPos: {fileID: 1306423685}
   player2StartingPos: {fileID: 478015950}
-  minTime: 3
-  maxTime: 10
+  minTime: 2
+  maxTime: 5
   minQuantity: 2
-  maxQuantity: 5
+  maxQuantity: 3
 --- !u!1001 &1189807427
 PrefabInstance:
   m_ObjectHideFlags: 0

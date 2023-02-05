@@ -5445,7 +5445,7 @@ GameObject:
   - component: {fileID: 1091240079}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6612,6 +6612,8 @@ MonoBehaviour:
   rb2: {fileID: 0}
   player1StartingPos: {fileID: 0}
   player2StartingPos: {fileID: 0}
+  player1Roots: []
+  player2Roots: []
 --- !u!114 &1391509988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6625,7 +6627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minTime: 5
-  maxTime: 15
+  maxTime: 20
   mowerPrefab: {fileID: 2126134910175882807, guid: 5fc881cd95d909448a4cffbf07e29928, type: 3}
   limit1: {fileID: 1724434137}
   limit2: {fileID: 888328032}
@@ -6654,6 +6656,7 @@ MonoBehaviour:
   earthquake: 0
   earthquakePSystem: {fileID: 0}
   mCamera: {fileID: 0}
+  molinoAnim: {fileID: 0}
 --- !u!4 &1391509990
 Transform:
   m_ObjectHideFlags: 0
@@ -7370,7 +7373,7 @@ GameObject:
   - component: {fileID: 1570681730}
   m_Layer: 0
   m_Name: Bottom
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9030,6 +9033,7 @@ MonoBehaviour:
   currentMiniGame: 3
   pIM: {fileID: 1924014947}
   sceneNames: []
+  sceneNamesBackUp: []
   mat1: {fileID: 0}
   mat2: {fileID: 0}
   currentPlayers: 0
@@ -9052,8 +9056,6 @@ MonoBehaviour:
   player1WinsGame: 
   player2WinsGame: 
   gameDraw: 
-  player1Roots: []
-  player2Roots: []
 --- !u!114 &1924014947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9222,7 +9224,7 @@ GameObject:
   - component: {fileID: 1930851917}
   m_Layer: 0
   m_Name: Right (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9529,7 +9531,7 @@ GameObject:
   - component: {fileID: 1996260610}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

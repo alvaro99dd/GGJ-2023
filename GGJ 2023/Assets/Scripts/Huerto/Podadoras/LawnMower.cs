@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class LawnMower : MonoBehaviour
 {
     public float turnSmoothVelocity, turnSmoothTime;
     public float speed, stunDuration;
+    public VisualEffect grassCut;
     public Collider trigger;
     Transform raizPlayer1, raizPlayer2;
     Rigidbody rB;
@@ -53,12 +55,14 @@ public class LawnMower : MonoBehaviour
         bool isPlayer1;
         if (collision.collider.CompareTag("VegetablePlayer1")) {
             //particulas romper raices
+            grassCut.Play();
             isPlayer1 = true;
             GameManager.instance.CheckRoots(isPlayer1);
             collision.gameObject.SetActive(false);
             dir = GetRandomDirection();
         } else if (collision.collider.CompareTag("VegetablePlayer2")) {
             //particulas romper raices
+            grassCut.Play();
             isPlayer1 = false;
             GameManager.instance.CheckRoots(isPlayer1);
             collision.gameObject.SetActive(false);
