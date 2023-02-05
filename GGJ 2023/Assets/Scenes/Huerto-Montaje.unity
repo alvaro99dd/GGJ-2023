@@ -322,6 +322,83 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3278499705302288885, guid: d21927c2a47cd6646b033d6e29147390, type: 3}
   m_PrefabInstance: {fileID: 609423244}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &121799805
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266451586262648485, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787513838096751647, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_Name
+      value: Character_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787513838096751647, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 910180e601133a0458a1f19ac1fc931c, type: 3}
 --- !u!1001 &123008796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3951,6 +4028,8 @@ MonoBehaviour:
   currentMiniGame: 2
   pIM: {fileID: 840420981}
   sceneNames: []
+  mat1: {fileID: 0}
+  mat2: {fileID: 0}
   currentPlayers: 0
   globalScoreP1: 0
   globalScoreP2: 0
@@ -3965,6 +4044,12 @@ MonoBehaviour:
   waterP2: 0
   waterToWin: 0
   timer: 0
+  player1WinsRound: 
+  player2WinsRound: 
+  roundDraw: 
+  player1WinsGame: 
+  player2WinsGame: 
+  gameDraw: 
 --- !u!114 &840420981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4966,6 +5051,9 @@ MonoBehaviour:
   rb2: {fileID: 0}
   player1StartingPos: {fileID: 0}
   player2StartingPos: {fileID: 0}
+  p1Icon: {fileID: 0}
+  p2Icon: {fileID: 0}
+  raizCrecida: {fileID: 0}
 --- !u!114 &1178869494
 MonoBehaviour:
   m_ObjectHideFlags: 0

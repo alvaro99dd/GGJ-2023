@@ -9,7 +9,7 @@ public class TurnipRandomizer : MonoBehaviour {
     private void Start() {
         if (GameManager.instance.currentMiniGame == MiniGames.Nabos) {
             GetRandomTurnips();
-            SetStartingPos();
+            //SetStartingPos();
         }
     }
 
