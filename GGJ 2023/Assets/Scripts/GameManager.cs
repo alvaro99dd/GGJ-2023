@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public PlayerInputManager pIM;
     public List<string> sceneNames;
+    public List<string> sceneNamesBackUp;
     public Material mat1, mat2;
 
     public int currentPlayers;
@@ -25,18 +26,12 @@ public class GameManager : MonoBehaviour {
     public int waterP1, waterP2, waterToWin;
     public float timer;
 
-    bool finishingGame;
+    WaterEvents wE;
+    bool finishingGame, waterEvent;
     int randomMiniGame;
 
     public string player1WinsRound, player2WinsRound, roundDraw;
     public string player1WinsGame, player2WinsGame, gameDraw;
-
-    public List<GameObject> player1Roots;
-    public List<GameObject> player2Roots;
-    private Material player1RootMaterial;
-    private Material player2RootMaterial;
-    int rootGroupPlayer1 = 0;
-    int rootGroupPlayer2 = 0;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -44,12 +39,13 @@ public class GameManager : MonoBehaviour {
             instance = this;
         }
         //pIM.onPlayerJoined += PIM_onPlayerJoined;
-        foreach(GameObject obj in player1Roots){
-    obj.GetComponentInChildren<MeshRenderer>().sharedMaterial.SetFloat("_Clip", 1f);
     }
-            foreach(GameObject obj in player2Roots){
-    obj.GetComponentInChildren<MeshRenderer>().sharedMaterial.SetFloat("_Clip", 1f);
-    }
+
+    private void Update() {
+        if (currentMiniGame == MiniGames.Regar && !waterEvent) {
+            wE = GameObject.Find("MiniGameEvents").GetComponent<WaterEvents>();
+            waterEvent = true;
+        }
     }
 
     void OnPlayerJoined(PlayerInput obj) {
@@ -177,7 +173,7 @@ public class GameManager : MonoBehaviour {
                 p2.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Nabos;
-                sceneNames.Remove("Nabos");
+                sceneNames.Remove("Nabos-Montaje");
                 break;
             case "Huerto-Montaje":
                 p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
@@ -209,12 +205,16 @@ public class GameManager : MonoBehaviour {
         if (isPlayer1) {
             if (++globalScoreP1 >= 2) {
                 CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsGame;
+                CanvasManager.instance.playerWins.SetActive(true);
+                CanvasManager.instance.button.SetActive(true);
                 gameEnded = true;
                 Time.timeScale = 0f;
             }
         } else {
             if (++globalScoreP2 >= 2) {
                 CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsGame;
+                CanvasManager.instance.playerWins.SetActive(true);
+                CanvasManager.instance.button.SetActive(true);
                 gameEnded = true;
                 Time.timeScale = 0f;
             }
@@ -310,50 +310,24 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(GameCountDown());
         } else {
             CanvasManager.instance.playerWins.GetComponent<Text>().text = gameDraw;
+            CanvasManager.instance.playerWins.SetActive(true);
+            CanvasManager.instance.button.SetActive(true);
             Time.timeScale = 0f;
         }
     }
 
-        IEnumerator GrowRootsPlayer1()
-    {
-        player1RootMaterial = player1Roots[rootGroupPlayer1].GetComponentInChildren<MeshRenderer>().sharedMaterial;
-        float tempClip = player1RootMaterial.GetFloat("_Clip");
-        while (player1RootMaterial.GetFloat("_Clip") > 0f)
-        {
-            player1RootMaterial.SetFloat("_Clip", tempClip -= 0.0025f);
-            yield return new WaitForEndOfFrame();
-        }
-        if (rootGroupPlayer1 < 5)
-        {
-            rootGroupPlayer1++;
-        }
-    }
 
-    IEnumerator GrowRootsPlayer2()
-    {
-        player2RootMaterial = player2Roots[rootGroupPlayer2].GetComponentInChildren<MeshRenderer>().sharedMaterial;
-        float tempClip = player2RootMaterial.GetFloat("_Clip");
-        while (player2RootMaterial.GetFloat("_Clip") > 0f)
-        {
-            player2RootMaterial.SetFloat("_Clip", tempClip -= 0.0025f);
-            yield return new WaitForEndOfFrame();
-        }
-        if (rootGroupPlayer2 < 5)
-        {
-            rootGroupPlayer2++;
-        }
-    }
 
     public void CheckWater(bool isPlayer1) {
         if (isPlayer1) {
             //particulas crecen raices player1
-            StartCoroutine(GrowRootsPlayer1());
+            StartCoroutine(wE.GrowRootsPlayer1());
             if (++waterP1 >= waterToWin) {
                 EndGame();
             }
         } else {
             //particulas crecen raices player2
-            StartCoroutine(GrowRootsPlayer2());
+            StartCoroutine(wE.GrowRootsPlayer2());
             if (++waterP2 >= waterToWin) {
                 EndGame();
             }
@@ -390,6 +364,23 @@ public class GameManager : MonoBehaviour {
             turnipsP2 -= score;
             GameObject.FindGameObjectWithTag("Player2").GetComponentInChildren<GrabBehaviour>().playerInterfaceNabos.text = turnipsP2.ToString();
         }
+    }
+
+    public void GoBackToLobby() {
+        globalScoreP1 = 0;
+        globalScoreP2 = 0;
+        waterP1 = 0;
+        waterP2 = 0;
+        turnipsP1 = 0;
+        turnipsP2 = 0;
+        rootsP1 = 6;
+        rootsP2 = 6;
+        sceneNames = sceneNamesBackUp;
+        CanvasManager.instance.playerWins.SetActive(false);
+        CanvasManager.instance.button.SetActive(false);
+        currentMiniGame = MiniGames.Lobby;
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Lobby");
     }
     //private void PIM_onPlayerJoined(PlayerInput obj) {
     //    currentPlayers++;

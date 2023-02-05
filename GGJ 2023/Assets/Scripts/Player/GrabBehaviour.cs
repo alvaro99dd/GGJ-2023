@@ -191,7 +191,7 @@ public class GrabBehaviour : MonoBehaviour {
         pC.anim.SetTrigger("GrabObject");
         pC.anim.SetBool("SmallObject", true);
         vegetablePlaceHolder.SetActive(true);
-        switch (vegetable.GetComponent<VegetableType>().vTypes) {
+        switch (vegetable.parent.GetComponent<VegetableType>().vTypes) {
             case Types.Cebolla:
                 vegetablePlaceHolder.transform.GetChild(1).gameObject.SetActive(true);
                 break;
@@ -207,6 +207,7 @@ public class GrabBehaviour : MonoBehaviour {
             default:
                 break;
         }
+        vegetablePlaceHolder.GetComponent<VegetableType>().vTypes = vegetable.parent.GetComponent<VegetableType>().vTypes;
         if (!vegetable.parent.TryGetComponent(out PlayerVegetable pV)) {
             Destroy(vegetable.gameObject);
         } else {
@@ -220,18 +221,26 @@ public class GrabBehaviour : MonoBehaviour {
         if (huerto.parent.name != huertoName) {
             return;
         }
+        GameObject tempVegetable = vegetablePlaceHolder.transform.GetChild(0).gameObject;
+        VegetableType vType = vegetablePlaceHolder.GetComponent<VegetableType>();
         pC.anim.SetTrigger("ThrowObject");
         pC.anim.SetBool("SmallObject", false);
         vegetable = false;
         objectGrabbed = false;
-        vegetablePlaceHolder.SetActive(false);
         for (int i = 0; i < vegetablePlaceHolder.transform.childCount; i++) {
+            if (vegetablePlaceHolder.transform.GetChild(i).gameObject.activeInHierarchy) {
+                tempVegetable = vegetablePlaceHolder.transform.GetChild(i).gameObject;
+                vType = vegetablePlaceHolder.GetComponent<VegetableType>();
+            }
             vegetablePlaceHolder.transform.GetChild(i).gameObject.SetActive(false);
         }
+        vegetablePlaceHolder.SetActive(false);
         if (transform.parent.CompareTag("Player1")) {
             for (int i = 0; i < vegetablePos.Count; i++) {
                 if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
                     vegetablePos[i].GetChild(0).gameObject.SetActive(true);
+                    vegetablePos[i].GetChild(0).GetComponent<VegetableType>().vTypes = vType.vTypes;
+                    vegetablePos[i].GetChild(0).GetChild(0).Find(tempVegetable.name).gameObject.SetActive(true);
                     //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP1++;
                     playerInterfaceHuerto.text = GameManager.instance.vegetablesP1.ToString() + "/12";
@@ -243,6 +252,7 @@ public class GrabBehaviour : MonoBehaviour {
             for (int i = 0; i < vegetablePos.Count; i++) {
                 if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
                     vegetablePos[i].GetChild(0).gameObject.SetActive(true);
+                    vegetablePos[i].GetChild(0).GetChild(0).Find(tempVegetable.name).gameObject.SetActive(true);
                     //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP2++;
                     playerInterfaceHuerto.text = GameManager.instance.vegetablesP2.ToString() + "/12";
@@ -280,8 +290,7 @@ public class GrabBehaviour : MonoBehaviour {
         switch (objectTag) {
             case "Water":
                 //particulas tirar agua
-                if (water)
-                {
+                if (water) {
                     //particulas tirar agua
                     pC.waterDropPSystem.Play();
                     water = false;

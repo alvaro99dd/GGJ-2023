@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 348643845545275121}
+  - component: {fileID: 3343520587544775863}
   m_Layer: 0
   m_Name: Patata
   m_TagString: Vegetable
@@ -32,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1711718006987684936
+--- !u!114 &3343520587544775863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7271121074906630997}
+  m_GameObject: {fileID: 7259616120699172737}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16f5280786368fe4face25e0445efea4, type: 3}
@@ -110,11 +111,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0477115f6839e284baeb23e2f3562554, type: 3}
---- !u!1 &7271121074906630997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3680494091300104805, guid: 0477115f6839e284baeb23e2f3562554, type: 3}
-  m_PrefabInstance: {fileID: 6339814796807332144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8044527052094362095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4060115240068427999, guid: 0477115f6839e284baeb23e2f3562554, type: 3}

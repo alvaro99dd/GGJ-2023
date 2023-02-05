@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour {
     public BoxCollider bC;
     public SkinnedMeshRenderer skm;
     public GameObject cube;
-    public Sprite spaceBar, intro;
 
     public ParticleSystem stunPSystem;
     public ParticleSystem waterThrowPSystem;
@@ -30,11 +29,6 @@ public class PlayerController : MonoBehaviour {
         gB = GetComponentInChildren<GrabBehaviour>();
         skm = GetComponentInChildren<SkinnedMeshRenderer>();
         anim = GetComponentInChildren<Animator>();
-        if (transform.CompareTag("Player1")) {
-            transform.Find("Canvas").GetChild(0).GetComponent<Image>().sprite = spaceBar;
-        } else {
-            transform.Find("Canvas").GetChild(0).GetComponent<Image>().sprite = intro;
-        }
         if (GameManager.instance.currentPlayers == 1) {
             skm.material = GameManager.instance.mat1;
         } else {
@@ -167,10 +161,8 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerExit(Collider other) {
         if (other.CompareTag("DropZone")) {
             dropZone = false;
-            transform.Find("Canvas").gameObject.SetActive(false);
         } else {
             grabZone = false;
-            transform.Find("Canvas").gameObject.SetActive(false);
         }
 
         if (other.CompareTag("Play")) {

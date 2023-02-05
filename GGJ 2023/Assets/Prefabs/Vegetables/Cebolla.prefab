@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 37395820248713651}
+  - component: {fileID: 4480414588068260087}
   m_Layer: 0
   m_Name: Cebolla
   m_TagString: Vegetable
@@ -32,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3115283928414640896
+--- !u!114 &4480414588068260087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4739095541342899401}
+  m_GameObject: {fileID: 3395545530356726029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16f5280786368fe4face25e0445efea4, type: 3}
@@ -110,11 +111,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a8b31ebfb622a5408d62cfdf56d6b30, type: 3}
---- !u!1 &4739095541342899401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4514635017503475268, guid: 6a8b31ebfb622a5408d62cfdf56d6b30, type: 3}
-  m_PrefabInstance: {fileID: 9179341998269926029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5372643609093985907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3885731320422587646, guid: 6a8b31ebfb622a5408d62cfdf56d6b30, type: 3}

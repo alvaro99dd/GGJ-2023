@@ -1867,7 +1867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &212261823
 Transform:
   m_ObjectHideFlags: 0
@@ -2001,18 +2001,6 @@ MonoBehaviour:
   player1WinsGame: 
   player2WinsGame: 
   gameDraw: 
-  player1Roots:
-  - {fileID: 715367988}
-  - {fileID: 1358818255}
-  - {fileID: 93307816}
-  - {fileID: 2056549853}
-  - {fileID: 2097025699}
-  player2Roots:
-  - {fileID: 338535311}
-  - {fileID: 2136707063}
-  - {fileID: 1309270721}
-  - {fileID: 565816099}
-  - {fileID: 1616382001}
 --- !u!1001 &213624911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8768,6 +8756,18 @@ MonoBehaviour:
   rb2: {fileID: 970386320}
   player1StartingPos: {fileID: 2079933538}
   player2StartingPos: {fileID: 1004114264}
+  player1Roots:
+  - {fileID: 715367988}
+  - {fileID: 1358818255}
+  - {fileID: 93307816}
+  - {fileID: 2056549853}
+  - {fileID: 2097025699}
+  player2Roots:
+  - {fileID: 338535311}
+  - {fileID: 2136707063}
+  - {fileID: 1309270721}
+  - {fileID: 565816099}
+  - {fileID: 1616382001}
 --- !u!114 &1258041192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8781,7 +8781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSmoothVelocity: 0
-  turnSmoothTime: 0
+  turnSmoothTime: 0.5
   minTime: 2
   maxTime: 5
   speed: 100
