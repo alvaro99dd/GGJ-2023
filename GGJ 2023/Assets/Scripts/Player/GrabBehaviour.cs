@@ -209,6 +209,7 @@ public class GrabBehaviour : MonoBehaviour {
         }
         vegetablePlaceHolder.GetComponent<VegetableType>().vTypes = vegetable.parent.GetComponent<VegetableType>().vTypes;
         if (!vegetable.parent.TryGetComponent(out PlayerVegetable pV)) {
+            SoundManager.instance.aS.PlayOneShot(SoundManager.instance.excavar);
             Destroy(vegetable.gameObject);
         } else {
             vegetable.parent.gameObject.SetActive(false);
@@ -221,6 +222,7 @@ public class GrabBehaviour : MonoBehaviour {
         if (huerto.parent.name != huertoName) {
             return;
         }
+        SoundManager.instance.aS.PlayOneShot(SoundManager.instance.excavar);
         GameObject tempVegetable = vegetablePlaceHolder.transform.GetChild(0).gameObject;
         VegetableType vType = vegetablePlaceHolder.GetComponent<VegetableType>();
         pC.anim.SetTrigger("ThrowObject");
@@ -271,6 +273,7 @@ public class GrabBehaviour : MonoBehaviour {
 
     void WaterBehaviour() {
         pC.anim.SetTrigger("ThrowWater");
+        SoundManager.instance.aS.PlayOneShot(SoundManager.instance.salpicar);
         bool isPlayer1 = true;
         if (transform.parent.CompareTag("Player2")) {
             isPlayer1 = false;
@@ -293,6 +296,7 @@ public class GrabBehaviour : MonoBehaviour {
                 if (water) {
                     //particulas tirar agua
                     pC.waterDropPSystem.Play();
+                    SoundManager.instance.aS.PlayOneShot(SoundManager.instance.salpicar);
                     water = false;
                 }
                 break;

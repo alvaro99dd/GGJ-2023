@@ -26,6 +26,7 @@ public class MowerSpawner : MonoBehaviour {
     IEnumerator randomSpawn() {
         while (true) {
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+            SoundManager.instance.aS.PlayOneShot(SoundManager.instance.podadora);
             for (int i = 0; i < 2; i++) {
                 Vector3 randomPos = new Vector3(Random.Range(limit1.position.x, limit2.position.x), Random.Range(limit1.position.y, limit2.position.y), Random.Range(limit1.position.z, limit2.position.z));
                 CheckSpawn(randomPos);

@@ -92,7 +92,7 @@ Material:
     - _Choppiness: 0.015
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Clip: 2
+    - _Clip: 1.9975
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1

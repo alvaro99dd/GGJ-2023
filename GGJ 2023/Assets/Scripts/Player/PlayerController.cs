@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour {
         anim.SetBool("Stun", true);
         //particulas stun aparecen
         stunPSystem.Play();
+        SoundManager.instance.aS.PlayOneShot(SoundManager.instance.stun);
         yield return new WaitForSeconds(earthquake.stunDuration);
         stun = false;
         anim.SetBool("Stun", false);
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour {
         anim.SetBool("Stun", true);
         //particulas stun aparecen
         stunPSystem.Play();
+        SoundManager.instance.aS.PlayOneShot(SoundManager.instance.stun);
         yield return new WaitForSeconds(stunDuration);
         //particulas stun fuera
         stun = false;

@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour {
     public int waterP1, waterP2, waterToWin;
     public float timer;
 
+    AudioSource aS;
+    MusicManager mM;
     WaterEvents wE;
     bool finishingGame, waterEvent;
     int randomMiniGame;
@@ -38,6 +40,10 @@ public class GameManager : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
+        aS = GetComponent<AudioSource>();
+        mM = GetComponent<MusicManager>();
+        aS.clip = mM.temaC;
+        aS.Play();
         //pIM.onPlayerJoined += PIM_onPlayerJoined;
     }
 
@@ -110,6 +116,32 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadMinigame() {
+        int changeMusic;
+        if (aS.clip == mM.temaA) {
+            changeMusic = Random.Range(0, 2);
+        } else {
+            changeMusic = Random.Range(0, 3);
+        }
+
+        switch (changeMusic) {
+            case 0:
+                if (aS.clip == mM.temaA) {
+                    break;
+                }
+                aS.Stop();
+                aS.clip = mM.temaA;
+                aS.Play();
+                break;
+            case 1:
+                if (aS.clip == mM.temaB) {
+                    break;
+                }
+                aS.Stop();
+                aS.clip = mM.temaB;
+                aS.Play();
+                break;
+        }
+
         GameObject p1 = GameObject.FindGameObjectWithTag("Player1");
         GameObject p2 = GameObject.FindGameObjectWithTag("Player2");
 
@@ -224,6 +256,7 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator StartTimer() {
         timer = 0;
+        SoundManager.instance.aS.PlayOneShot(SoundManager.instance.pito);
         CanvasManager.instance.timer.SetActive(true);
         while (timer <= 60) {
             timer += Time.deltaTime;
@@ -380,6 +413,9 @@ public class GameManager : MonoBehaviour {
         CanvasManager.instance.button.SetActive(false);
         currentMiniGame = MiniGames.Lobby;
         Time.timeScale = 1;
+        aS.Stop();
+        aS.clip = mM.temaC;
+        aS.Play();
         SceneManager.LoadScene("Lobby");
     }
     //private void PIM_onPlayerJoined(PlayerInput obj) {

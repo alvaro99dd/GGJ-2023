@@ -53,6 +53,7 @@ public class LawnMowerWater : MonoBehaviour {
         //particulas stun aparecen
         pC.stunPSystem.Play();
         pC.gB.ObjectFalledOff();
+        SoundManager.instance.aS.PlayOneShot(SoundManager.instance.stun);
         yield return new WaitForSeconds(stunDuration);
         //particulas stun fuera
         pC.stun = false;

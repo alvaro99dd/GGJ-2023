@@ -65,7 +65,7 @@ VisualEffect:
       - m_Value: 7.22
         m_Name: DirtQuantity
         m_Overridden: 1
-      - m_Value: 1.39
+      - m_Value: 1.6
         m_Name: DirtSize
         m_Overridden: 1
       - m_Value: 1.2
