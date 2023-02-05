@@ -8767,8 +8767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04b1db9970b6f84f9f592d94d0ee17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTime: 10
-  maxTime: 20
+  minTime: 20
+  maxTime: 30
   earthquakeTime: 5
   stunDuration: 2
   earthquake: 0
@@ -8950,7 +8950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280408020}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 5.35, z: 0}
+  m_LocalPosition: {x: -11.8, y: 5.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11513,7 +11513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640034658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 3, z: 6.5}
+  m_LocalPosition: {x: -11.58, y: 3, z: 6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
