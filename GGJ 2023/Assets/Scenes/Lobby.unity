@@ -324,14 +324,11 @@ MonoBehaviour:
   - Regar-Montaje
   - Nabos-Montaje
   - Huerto-Montaje
-<<<<<<< Updated upstream
   - Podadoras
   sceneNamesBackUp:
   - Regar-Montaje
   - Nabos-Montaje
   - Huerto-Montaje
-=======
->>>>>>> Stashed changes
   - Podadoras
   mat1: {fileID: 2100000, guid: 80da4ccf6c6df424495b42d7396fbc7a, type: 2}
   mat2: {fileID: 2100000, guid: d918bcb6958fcf149bafa5faeeba519b, type: 2}
@@ -355,8 +352,6 @@ MonoBehaviour:
   player1WinsGame: Player1 wins!
   player2WinsGame: Player2 wins!
   gameDraw: Game ended with a draw!
-  player1Roots: []
-  player2Roots: []
 --- !u!114 &332162403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1601,10 +1596,7 @@ MonoBehaviour:
   earthquake: 0
   earthquakePSystem: {fileID: 0}
   mCamera: {fileID: 0}
-<<<<<<< Updated upstream
   molinoAnim: {fileID: 0}
-=======
->>>>>>> Stashed changes
 --- !u!4 &1254076057
 Transform:
   m_ObjectHideFlags: 0
