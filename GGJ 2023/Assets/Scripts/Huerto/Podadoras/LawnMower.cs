@@ -47,7 +47,7 @@ public class LawnMower : MonoBehaviour
     }
 
     public IEnumerator GetGrabZone() {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
         trigger.enabled = true;
     }
 

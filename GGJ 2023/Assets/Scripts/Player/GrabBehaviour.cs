@@ -120,7 +120,9 @@ public class GrabBehaviour : MonoBehaviour {
         pC.grabZone = false;
         objectGrabbed = true;
         grabbingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        grabbingObject.position = transform.position + transform.forward * 2;
+        Vector3 pos = transform.position + transform.forward * 2;
+        pos.y = -1.17f;
+        grabbingObject.position = pos;
         grabbingObject.SetParent(transform);
         grabbingObject.gameObject.SetActive(false);
         mowerPlaceHolder.SetActive(true);
@@ -132,6 +134,9 @@ public class GrabBehaviour : MonoBehaviour {
         objectGrabbed = false;
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(2).GetComponent<LawnMower>().dir = transform.forward;
+        Vector3 pos = transform.position + transform.forward * 2;
+        pos.y = -1.17f;
+        transform.GetChild(2).position = pos;
         transform.GetChild(2).GetComponent<LawnMower>().StartCoroutine(transform.GetChild(2).GetComponent<LawnMower>().GetGrabZone());
         transform.GetChild(2).SetParent(GameObject.Find("Mowers").transform);
         mowerPlaceHolder.SetActive(false);
@@ -267,7 +272,7 @@ public class GrabBehaviour : MonoBehaviour {
     #endregion
 
     //IEnumerator SetObjectGrabbed() {
-    //    yield return new WaitForSeconds(0.5f);
+    //    yield return new WaitForSeconds(0.3f);
     //    objectGrabbed = false;
     //}
 

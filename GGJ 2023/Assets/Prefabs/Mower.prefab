@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126134910175882807}
-  m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071069}
+  m_LocalRotation: {x: -0, y: -0, z: -0.000000059604645, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4693979, y: 1.4693979, z: 1.4693979}
   m_ConstrainProportionsScale: 0
@@ -39,7 +39,7 @@ Transform:
   - {fileID: 2870331407476344691}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2126134910175882794
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   turnSmoothTime: 0.5
   speed: 100
   stunDuration: 1
+  grassCut: {fileID: 2870331407476344690}
   trigger: {fileID: 4290620897671081507}
   dir: {x: 0, y: 0, z: 0}
 --- !u!135 &4290620897671081507
@@ -148,8 +149,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 0.4802827, z: 1.79}
-  m_Center: {x: 0.00000004056399, y: 0.2, z: -0.000000081127986}
+  m_Size: {x: 1.0000002, y: 1.0178102, z: 1.3581638}
+  m_Center: {x: 0.000000040563997, y: 0.46876347, z: 0.8041165}
 --- !u!1 &3126163655348272959
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +257,11 @@ PrefabInstance:
 --- !u!4 &2870331407476344691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8874581641822734322, guid: 22b6df8a23c8c6c4f81a4b12ecfeca14, type: 3}
+  m_PrefabInstance: {fileID: 6700705123272376449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &2870331407476344690 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 8874581641822734323, guid: 22b6df8a23c8c6c4f81a4b12ecfeca14, type: 3}
   m_PrefabInstance: {fileID: 6700705123272376449}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8616860901717300211

@@ -13,6 +13,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject nextMiniGame;
     public GameObject image;
     public GameObject button;
+    public GameObject info;
 
     [Header("Minigames Images")]
     public Sprite nabos;

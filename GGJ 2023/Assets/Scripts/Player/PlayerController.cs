@@ -148,9 +148,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (other.CompareTag("Controls")) {
-            if (++GameManager.instance.playersInButton == 2) {
-
-            }
+            CanvasManager.instance.info.SetActive(true);
         }
 
         if (other.CompareTag("Exit")) {
@@ -170,6 +168,14 @@ public class PlayerController : MonoBehaviour {
         if (other.CompareTag("Play")) {
             GameManager.instance.playersInButton--;
             CanvasManager.instance.playText.SetActive(false);
+        }
+
+        if (other.CompareTag("Exit")) {
+            GameManager.instance.playersInButton--;
+        }
+
+        if (other.CompareTag("Controls")) {
+            CanvasManager.instance.info.SetActive(false);
         }
     }
 }

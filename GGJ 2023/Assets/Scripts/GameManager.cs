@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
             case "Huerto-Montaje":
                 CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.huertos;
                 break;
-            case "Podadoras":
+            case "Podadoras-Montaje":
                 CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.podadoras;
                 break;
         }
@@ -346,6 +346,7 @@ public class GameManager : MonoBehaviour {
             CanvasManager.instance.playerWins.SetActive(true);
             CanvasManager.instance.button.SetActive(true);
             Time.timeScale = 0f;
+            return;
         }
     }
 
@@ -400,6 +401,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void GoBackToLobby() {
+        CanvasManager.instance.playerWins.SetActive(false);
+        CanvasManager.instance.button.SetActive(false);
+        Time.timeScale = 1f;
+        currentMiniGame = MiniGames.Lobby;
+        aS.Stop();
+        aS.clip = mM.temaC;
+        aS.Play();
         SceneManager.LoadScene("Lobby");
     }
     //private void PIM_onPlayerJoined(PlayerInput obj) {
