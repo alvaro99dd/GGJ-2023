@@ -14,7 +14,7 @@ public class MowerSpawner : MonoBehaviour {
     private void Start() {
         if (GameManager.instance.currentMiniGame == MiniGames.Podadoras) {
             StartCoroutine(randomSpawn());
-            SetStartingPos();
+            //SetStartingPos();
         }
     }
 
