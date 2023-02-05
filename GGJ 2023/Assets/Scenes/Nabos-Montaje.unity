@@ -1871,6 +1871,8 @@ MonoBehaviour:
   player1WinsGame: 
   player2WinsGame: 
   gameDraw: 
+  player1Roots: []
+  player2Roots: []
 --- !u!114 &155840944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22956,8 +22958,11 @@ MonoBehaviour:
   rb2: {fileID: 0}
   player1StartingPos: {fileID: 0}
   player2StartingPos: {fileID: 0}
+<<<<<<< Updated upstream
   player1Roots: []
   player2Roots: []
+=======
+>>>>>>> Stashed changes
 --- !u!114 &1750486238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23000,7 +23005,10 @@ MonoBehaviour:
   earthquake: 0
   earthquakePSystem: {fileID: 0}
   mCamera: {fileID: 0}
+<<<<<<< Updated upstream
   molinoAnim: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!4 &1750486240
 Transform:
   m_ObjectHideFlags: 0
