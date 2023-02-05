@@ -12,6 +12,8 @@ public class WaterEvents : MonoBehaviour {
     bool spawningWater = false;
     public Rigidbody rb1, rb2;
     public Transform player1StartingPos, player2StartingPos;
+    public Transform p1Icon, p2Icon;
+    public Sprite raizCrecida;
 
     private void Start() {
         if (GameManager.instance.currentMiniGame != MiniGames.Regar) {

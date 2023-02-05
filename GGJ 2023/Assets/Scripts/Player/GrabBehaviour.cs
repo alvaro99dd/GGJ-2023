@@ -97,7 +97,7 @@ public class GrabBehaviour : MonoBehaviour {
         pC.anim.SetTrigger("ThrowObject");
         pC.anim.SetBool("SmallObject", false);
         objectGrabbed = false;
-        transform.GetChild(2).position = transform.position + transform.forward;
+        transform.GetChild(2).position = transform.position;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
         transform.GetChild(2).SetParent(GameObject.Find("Turnips").transform);
     }

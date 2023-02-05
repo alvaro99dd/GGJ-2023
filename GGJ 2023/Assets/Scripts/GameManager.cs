@@ -138,6 +138,13 @@ public class GameManager : MonoBehaviour {
         }
 
         SceneManager.LoadScene(sceneNames[randomMiniGame]);
+
+        p2.GetComponentInChildren<Animator>().ResetTrigger("GrabObject");
+        p2.GetComponentInChildren<Animator>().ResetTrigger("GrabTurnip");
+        p2.GetComponentInChildren<Animator>().ResetTrigger("GrabMower");
+        p1.GetComponentInChildren<Animator>().ResetTrigger("GrabTurnip");
+        p1.GetComponentInChildren<Animator>().ResetTrigger("GrabObject");
+        p1.GetComponentInChildren<Animator>().ResetTrigger("GrabMower");
         switch (sceneNames[randomMiniGame]) {
             case "Regar-Montaje":
                 p1.GetComponentInChildren<Animator>().SetBool("SmallObject", true);
