@@ -4050,6 +4050,8 @@ MonoBehaviour:
   player1WinsGame: 
   player2WinsGame: 
   gameDraw: 
+  player1Roots: []
+  player2Roots: []
 --- !u!114 &840420981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5042,6 +5044,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterPrefab: {fileID: 3781025878367577726, guid: 5877840c10c50a345987420128cab00b, type: 3}
+  rainSystem1: {fileID: 0}
+  rainSystem2: {fileID: 0}
+  rainingTime: 0
   minTime: 3
   maxTime: 6
   speed: 100
@@ -5051,9 +5056,6 @@ MonoBehaviour:
   rb2: {fileID: 0}
   player1StartingPos: {fileID: 0}
   player2StartingPos: {fileID: 0}
-  p1Icon: {fileID: 0}
-  p2Icon: {fileID: 0}
-  raizCrecida: {fileID: 0}
 --- !u!114 &1178869494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5094,6 +5096,8 @@ MonoBehaviour:
   earthquakeTime: 5
   stunDuration: 2
   earthquake: 0
+  earthquakePSystem: {fileID: 0}
+  mCamera: {fileID: 0}
 --- !u!4 &1178869496
 Transform:
   m_ObjectHideFlags: 0

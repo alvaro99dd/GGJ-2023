@@ -31,12 +31,25 @@ public class GameManager : MonoBehaviour {
     public string player1WinsRound, player2WinsRound, roundDraw;
     public string player1WinsGame, player2WinsGame, gameDraw;
 
+    public List<GameObject> player1Roots;
+    public List<GameObject> player2Roots;
+    private Material player1RootMaterial;
+    private Material player2RootMaterial;
+    int rootGroupPlayer1 = 0;
+    int rootGroupPlayer2 = 0;
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         if (instance == null) {
             instance = this;
         }
         //pIM.onPlayerJoined += PIM_onPlayerJoined;
+        foreach(GameObject obj in player1Roots){
+    obj.GetComponentInChildren<MeshRenderer>().sharedMaterial.SetFloat("_Clip", 1f);
+    }
+            foreach(GameObject obj in player2Roots){
+    obj.GetComponentInChildren<MeshRenderer>().sharedMaterial.SetFloat("_Clip", 1f);
+    }
     }
 
     void OnPlayerJoined(PlayerInput obj) {
@@ -289,14 +302,46 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+        IEnumerator GrowRootsPlayer1()
+    {
+        player1RootMaterial = player1Roots[rootGroupPlayer1].GetComponentInChildren<MeshRenderer>().sharedMaterial;
+        float tempClip = player1RootMaterial.GetFloat("_Clip");
+        while (player1RootMaterial.GetFloat("_Clip") > 0f)
+        {
+            player1RootMaterial.SetFloat("_Clip", tempClip -= 0.0025f);
+            yield return new WaitForEndOfFrame();
+        }
+        if (rootGroupPlayer1 < 5)
+        {
+            rootGroupPlayer1++;
+        }
+    }
+
+    IEnumerator GrowRootsPlayer2()
+    {
+        player2RootMaterial = player2Roots[rootGroupPlayer2].GetComponentInChildren<MeshRenderer>().sharedMaterial;
+        float tempClip = player2RootMaterial.GetFloat("_Clip");
+        while (player2RootMaterial.GetFloat("_Clip") > 0f)
+        {
+            player2RootMaterial.SetFloat("_Clip", tempClip -= 0.0025f);
+            yield return new WaitForEndOfFrame();
+        }
+        if (rootGroupPlayer2 < 5)
+        {
+            rootGroupPlayer2++;
+        }
+    }
+
     public void CheckWater(bool isPlayer1) {
         if (isPlayer1) {
             //particulas crecen raices player1
+            StartCoroutine(GrowRootsPlayer1());
             if (++waterP1 >= waterToWin) {
                 EndGame();
             }
         } else {
             //particulas crecen raices player2
+            StartCoroutine(GrowRootsPlayer2());
             if (++waterP2 >= waterToWin) {
                 EndGame();
             }

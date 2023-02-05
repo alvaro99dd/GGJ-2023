@@ -51,6 +51,7 @@ public class LawnMowerWater : MonoBehaviour {
     public IEnumerator StunBehaviour() {
         pC.stun = true;
         //particulas stun aparecen
+        pC.stunPSystem.Play();
         pC.gB.ObjectFalledOff();
         yield return new WaitForSeconds(stunDuration);
         //particulas stun fuera

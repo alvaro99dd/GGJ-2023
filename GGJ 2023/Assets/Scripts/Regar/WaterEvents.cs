@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class WaterEvents : MonoBehaviour {
     public GameObject waterPrefab;
+    private Material waterMaterial;
+    private float charcoMaxTime = 2f;
+    public ParticleSystem rainSystem1, rainSystem2;
+    public float rainingTime;
     [SerializeField] float minTime, maxTime, speed;
     [SerializeField] Transform limit1, limit2;
     GameObject tempWater, tempWater2;
@@ -12,17 +16,23 @@ public class WaterEvents : MonoBehaviour {
     bool spawningWater = false;
     public Rigidbody rb1, rb2;
     public Transform player1StartingPos, player2StartingPos;
-    public Transform p1Icon, p2Icon;
-    public Sprite raizCrecida;
 
     private void Start() {
+        waterMaterial = waterPrefab.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+        waterMaterial.SetFloat("_Clip", charcoMaxTime);
         if (GameManager.instance.currentMiniGame != MiniGames.Regar) {
             return;
         }
         //firstRandomSpawn();
         StartCoroutine(randomSpawn());
-        SetStartingPos();
+        //SetStartingPos();
         movement = StartCoroutine(randomMovement());
+        //Set de tiempo de lluvia a la nube 1
+        var main1 = rainSystem1.main;
+        main1.duration = rainingTime;
+        //Set de tiempo de lluvia a la nube 2
+        var main2 = rainSystem2.main;
+        main2.duration = rainingTime;
     }
 
     private void FixedUpdate() {
@@ -34,7 +44,8 @@ public class WaterEvents : MonoBehaviour {
         }
     }
 
-    void SetStartingPos() {
+    void SetStartingPos()
+    {
         GameObject.FindGameObjectWithTag("Player1").transform.position = player1StartingPos.position;
         GameObject.FindGameObjectWithTag("Player2").transform.position = player2StartingPos.position;
     }
@@ -47,22 +58,41 @@ public class WaterEvents : MonoBehaviour {
     //    StartCoroutine(randomSpawn());
     //}
 
+    IEnumerator WaterCreatorOverTime()
+    {
+        while (waterMaterial.GetFloat("_Clip") > 1f)
+        {
+            waterMaterial.SetFloat("_Clip", charcoMaxTime -= 0.0025f);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(1f);
+        while (waterMaterial.GetFloat("_Clip") < 2f)
+        {
+            waterMaterial.SetFloat("_Clip", charcoMaxTime += 0.0025f);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     IEnumerator randomSpawn() {
         while (true) {
-            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+            float tempTime = Random.Range(minTime, maxTime);
+            yield return new WaitForSeconds(tempTime);
+            rainSystem1.Play();//Se lanzan las particulas de lluvia 1
+            rainSystem2.Play();//Se lanzan las particulas de lluvia 2
             StopCoroutine(movement); //Se para la nube
             rb1.velocity = Vector3.zero;
             rb2.velocity = Vector3.zero;
             spawningWater = true;
-
             Destroy(tempWater);
             Destroy(tempWater2);
             Vector3 waterPosition = new Vector3(rb1.position.x, -1f, rb1.position.z);
             Vector3 waterPosition2 = new Vector3(rb2.position.x, -1f, rb2.position.z);
             tempWater = Instantiate(waterPrefab, waterPosition, Quaternion.identity);  //Spawn de charco player1
+            StartCoroutine(WaterCreatorOverTime());//Se crea el agua
             tempWater2 = Instantiate(waterPrefab, waterPosition2, Quaternion.identity);  //Spawn de charco player2
-
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(rainingTime);
+            StopCoroutine(WaterCreatorOverTime());//Para corrutina de creación de agua
+            StartCoroutine(WaterCreatorOverTime());//Lanza de nuevo la corrutina para encoger el agua
             movement = StartCoroutine(randomMovement());
             spawningWater = false;
         }

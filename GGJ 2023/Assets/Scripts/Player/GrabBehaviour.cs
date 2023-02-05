@@ -66,6 +66,7 @@ public class GrabBehaviour : MonoBehaviour {
     public void DropObject() {
         switch (objectTag) {
             case "Water":
+                pC.waterThrowPSystem.Play();
                 water = false;
                 objectGrabbed = false;
                 WaterBehaviour();
@@ -204,7 +205,12 @@ public class GrabBehaviour : MonoBehaviour {
         switch (objectTag) {
             case "Water":
                 //particulas tirar agua
-                water = false;
+                if (water)
+                {
+                    //particulas tirar agua
+                    pC.waterDropPSystem.Play();
+                    water = false;
+                }
                 break;
             default:
                 break;
