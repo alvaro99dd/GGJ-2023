@@ -63,24 +63,24 @@ public class WaterEvents : MonoBehaviour {
     public IEnumerator GrowRootsPlayer1() {
         player1RootMaterial = player1Roots[rootGroupPlayer1].GetComponentInChildren<MeshRenderer>().sharedMaterial;
         float tempClip = player1RootMaterial.GetFloat("_Clip");
+        if (rootGroupPlayer1 < 5) {
+            rootGroupPlayer1++;
+        }
         while (player1RootMaterial.GetFloat("_Clip") > 0f) {
             player1RootMaterial.SetFloat("_Clip", tempClip -= 0.0025f);
             yield return new WaitForEndOfFrame();
-        }
-        if (rootGroupPlayer1 < 5) {
-            rootGroupPlayer1++;
         }
     }
 
     public IEnumerator GrowRootsPlayer2() {
         player2RootMaterial = player2Roots[rootGroupPlayer2].GetComponentInChildren<MeshRenderer>().sharedMaterial;
         float tempClip = player2RootMaterial.GetFloat("_Clip");
+        if (rootGroupPlayer2 < 5) {
+            rootGroupPlayer2++;
+        }
         while (player2RootMaterial.GetFloat("_Clip") > 0f) {
             player2RootMaterial.SetFloat("_Clip", tempClip -= 0.0025f);
             yield return new WaitForEndOfFrame();
-        }
-        if (rootGroupPlayer2 < 5) {
-            rootGroupPlayer2++;
         }
     }
 

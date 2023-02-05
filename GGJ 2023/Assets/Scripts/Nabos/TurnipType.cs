@@ -11,8 +11,9 @@ public class TurnipType : MonoBehaviour
     ParticleSystem turnipParticles;
     public BodySize bodySize;
     public Collider trigger;
-    int score;
+    public int score;
     bool hasCollided;
+    public bool inBaseP1, inBaseP2;
 
     private void Awake() {
         Setup();
@@ -52,15 +53,17 @@ public class TurnipType : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision) {
         bool isPlayer1 = true;
-        if (collision.name == "BasePlayer1" && !hasCollided) {
+        if (collision.name == "BasePlayer1" && !inBaseP1) {
             //particulas nabo puesto en base
             turnipParticles.Play();
-            hasCollided = true;
+            //hasCollided = true;
+            inBaseP1 = true;
             GameManager.instance.CheckTurnips(isPlayer1, score);
-        } else if (collision.name == "BasePlayer2" && !hasCollided) {
+        } else if (collision.name == "BasePlayer2" && !inBaseP2) {
             //particulas nabo puesto en base
             turnipParticles.Play();
-            hasCollided = true;
+            //hasCollided = true;
+            inBaseP2 = true;
             GameManager.instance.CheckTurnips(!isPlayer1, score);
         }
     }
@@ -69,10 +72,10 @@ public class TurnipType : MonoBehaviour
         bool isPlayer1 = true;
         if (other.name == "BasePlayer1" && hasCollided) {
             hasCollided = false;
-            GameManager.instance.DeleteTurnips(isPlayer1, score);
+            
         } else if (other.name == "BasePlayer2" && hasCollided) {
             hasCollided = false;
-            GameManager.instance.DeleteTurnips(!isPlayer1, score);
+            
         }
     }
 }

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 250cbaacdfa6ca24ba9b2cd219f78acb, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1925,10 +1925,13 @@ MonoBehaviour:
   sceneNamesBackUp: []
   mat1: {fileID: 0}
   mat2: {fileID: 0}
+  gameStarted: 0
+  comeBack: 0
   currentPlayers: 0
   globalScoreP1: 0
   globalScoreP2: 0
-  playersInButton: 0
+  playersInPlay: 0
+  playersInExit: 0
   rootsP1: 0
   rootsP2: 0
   vegetablesP1: 0
@@ -2055,6 +2058,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &164385665
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2135,6 +2141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &166170009
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3439,7 +3448,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &258025416
 MonoBehaviour:
@@ -3455,6 +3464,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1 &259249292
 GameObject:
   m_ObjectHideFlags: 0
@@ -4026,7 +4038,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &330716044
 MonoBehaviour:
@@ -4042,6 +4054,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1001 &336516239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4173,7 +4188,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &344088510
 MonoBehaviour:
@@ -4189,6 +4204,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1 &346976953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5687,6 +5705,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &436449832
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5979,7 +6000,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &456006418
 MonoBehaviour:
@@ -5995,6 +6016,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1001 &462566334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6905,7 +6929,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &537076228
 MonoBehaviour:
@@ -6921,6 +6945,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1 &539552724
 GameObject:
   m_ObjectHideFlags: 0
@@ -7955,7 +7982,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &615981422
 MonoBehaviour:
@@ -7971,6 +7998,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1001 &617550208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8279,6 +8309,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &653541528
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9700,6 +9733,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &727466896
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10246,6 +10282,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &742999735
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11151,6 +11190,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &840368902
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12260,7 +12302,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &953662730
 MonoBehaviour:
@@ -12276,6 +12318,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1 &954983251
 GameObject:
   m_ObjectHideFlags: 0
@@ -13065,7 +13110,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1029444028
 MonoBehaviour:
@@ -13081,6 +13126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1001 &1039246461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13763,7 +13811,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1067528571
 MonoBehaviour:
@@ -13779,6 +13827,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1001 &1072929521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17148,6 +17199,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &1296607376
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17406,7 +17460,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1317146019
 MonoBehaviour:
@@ -17422,6 +17476,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1 &1317247929
 GameObject:
   m_ObjectHideFlags: 0
@@ -21680,7 +21737,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1611020319
 MonoBehaviour:
@@ -21696,6 +21753,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1 &1611155614
 GameObject:
   m_ObjectHideFlags: 0
@@ -23253,7 +23313,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1699525776
 MonoBehaviour:
@@ -23269,6 +23329,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1001 &1707478372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24213,7 +24276,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1805548903
 MonoBehaviour:
@@ -24229,6 +24292,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!1 &1810245235
 GameObject:
   m_ObjectHideFlags: 0
@@ -25343,6 +25409,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &1878863560
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25618,6 +25687,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &1905621274
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -27008,6 +27080,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &1993264313
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -27399,6 +27474,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &2029395865
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28110,7 +28188,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.08
+  m_Radius: 0.72
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2083693008
 Rigidbody:
@@ -28142,6 +28220,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 2083693007}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!4 &2083693010
 Transform:
   m_ObjectHideFlags: 0
@@ -28212,6 +28293,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &2085347121
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28730,6 +28814,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodySize: 0
   trigger: {fileID: 164385665}
+  score: 0
+  inBaseP1: 0
+  inBaseP2: 0
 --- !u!135 &2130412869
 SphereCollider:
   m_ObjectHideFlags: 0

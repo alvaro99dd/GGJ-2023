@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: fab5150c32f6c6a489fbe2d46957c124, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -8709,10 +8709,13 @@ MonoBehaviour:
   sceneNamesBackUp: []
   mat1: {fileID: 0}
   mat2: {fileID: 0}
+  gameStarted: 0
+  comeBack: 0
   currentPlayers: 0
   globalScoreP1: 0
   globalScoreP2: 0
-  playersInButton: 0
+  playersInPlay: 0
+  playersInExit: 0
   rootsP1: 0
   rootsP2: 0
   vegetablesP1: 0

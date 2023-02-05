@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour {
     public BoxCollider bC;
     public SkinnedMeshRenderer skm;
     public GameObject cube;
-
     public ParticleSystem stunPSystem;
     public ParticleSystem waterThrowPSystem;
     public ParticleSystem waterDropPSystem;
@@ -139,8 +138,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (other.CompareTag("Play")) {
-            if (++GameManager.instance.playersInButton == 2) {
+            if (++GameManager.instance.playersInPlay == 2 && !GameManager.instance.gameStarted) {
                 CanvasManager.instance.playText.SetActive(false);
+                GameManager.instance.gameStarted = true;
                 GameManager.instance.StartCoroutine(GameManager.instance.LobbyCountDown());
             } else {
                 CanvasManager.instance.playText.SetActive(true);
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (other.CompareTag("Exit")) {
-            if (++GameManager.instance.playersInButton == 2) {
+            if (++GameManager.instance.playersInExit == 2) {
                 Application.Quit();
             }
         }
@@ -166,12 +166,12 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (other.CompareTag("Play")) {
-            GameManager.instance.playersInButton--;
+            GameManager.instance.playersInPlay--;
             CanvasManager.instance.playText.SetActive(false);
         }
 
         if (other.CompareTag("Exit")) {
-            GameManager.instance.playersInButton--;
+            GameManager.instance.playersInExit--;
         }
 
         if (other.CompareTag("Controls")) {

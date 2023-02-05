@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour {
     public List<string> sceneNames;
     public List<string> sceneNamesBackUp;
     public Material mat1, mat2;
+    public bool gameStarted, comeBack;
 
     public int currentPlayers;
     public int globalScoreP1, globalScoreP2;
-    public int playersInButton;
+    public int playersInPlay, playersInExit;
     public int rootsP1, rootsP2;
     public int vegetablesP1, vegetablesP2;
     public int turnipsP1, turnipsP2;
@@ -116,6 +117,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadMinigame() {
+        CanvasManager.instance.globalScore.SetActive(true);
         int changeMusic;
         if (aS.clip == mM.temaA) {
             changeMusic = Random.Range(0, 2);
@@ -238,18 +240,20 @@ public class GameManager : MonoBehaviour {
             if (++globalScoreP1 >= 2) {
                 CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsGame;
                 CanvasManager.instance.playerWins.SetActive(true);
-                CanvasManager.instance.button.SetActive(true);
                 gameEnded = true;
+                StartCoroutine(KillGame());
                 Time.timeScale = 0f;
             }
+            CanvasManager.instance.p1Global.text = globalScoreP1.ToString();
         } else {
             if (++globalScoreP2 >= 2) {
                 CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsGame;
                 CanvasManager.instance.playerWins.SetActive(true);
-                CanvasManager.instance.button.SetActive(true);
                 gameEnded = true;
+                StartCoroutine(KillGame());
                 Time.timeScale = 0f;
             }
+            CanvasManager.instance.p2Global.text = globalScoreP2.ToString();
         }
         return gameEnded;
     }
@@ -344,7 +348,7 @@ public class GameManager : MonoBehaviour {
         } else {
             CanvasManager.instance.playerWins.GetComponent<Text>().text = gameDraw;
             CanvasManager.instance.playerWins.SetActive(true);
-            CanvasManager.instance.button.SetActive(true);
+            StartCoroutine(KillGame());
             Time.timeScale = 0f;
             return;
         }
@@ -400,15 +404,22 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    IEnumerator KillGame() {
+        yield return new WaitForSecondsRealtime(5f);
+        System.Diagnostics.Process.Start(Application.dataPath.Replace("_Data", ".exe")); //new program
+        Application.Quit(); //kill current process
+    }
+
     public void GoBackToLobby() {
         CanvasManager.instance.playerWins.SetActive(false);
-        CanvasManager.instance.button.SetActive(false);
         Time.timeScale = 1f;
         currentMiniGame = MiniGames.Lobby;
         aS.Stop();
         aS.clip = mM.temaC;
         aS.Play();
-        SceneManager.LoadScene("Lobby");
+        gameStarted = false;
+        comeBack = true;
+        SceneManager.LoadScene("Lobby-Montaje");
     }
     //private void PIM_onPlayerJoined(PlayerInput obj) {
     //    currentPlayers++;

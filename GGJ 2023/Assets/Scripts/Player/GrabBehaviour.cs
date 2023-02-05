@@ -14,7 +14,8 @@ public class GrabBehaviour : MonoBehaviour {
     public List<Transform> vegetablePos;
     public Transform huerto;
     public Transform playerInterfaceRegar;
-    public Text playerInterfaceHuerto;
+    public Text playerInterfaceHuerto1;
+    public Text playerInterfaceHuerto2;
     public Text playerInterfaceNabos;
     public Sprite raizCrecida;
     public string huertoName;
@@ -50,8 +51,10 @@ public class GrabBehaviour : MonoBehaviour {
                 } else if (grabbingObject.parent.TryGetComponent(out PlayerVegetable pV1) && pV1.playerTag != transform.parent.tag) {
                     if (transform.parent.CompareTag("Player1")) {
                         GameManager.instance.vegetablesP2--;
+                        playerInterfaceHuerto2.text = GameManager.instance.vegetablesP2.ToString() + "/12";
                     } else {
                         GameManager.instance.vegetablesP1--;
+                        playerInterfaceHuerto1.text = GameManager.instance.vegetablesP1.ToString() + "/12";
                     }
                 }
                 vegetable = true;
@@ -94,10 +97,18 @@ public class GrabBehaviour : MonoBehaviour {
     }
 
     void GrabTurnip(Transform grabbingObject) {
+        bool isPlayer1 = true;
         pC.anim.SetTrigger("GrabTurnip");
         pC.anim.SetBool("SmallObject", true);
         objectTag = grabbingObject.tag;
-        pC.grabZone = false;
+        grabbingObject.GetComponent<SphereCollider>().enabled = false;
+        if (grabbingObject.GetComponent<TurnipType>().inBaseP1) {
+            grabbingObject.GetComponent<TurnipType>().inBaseP1 = false;
+            GameManager.instance.DeleteTurnips(isPlayer1, grabbingObject.GetComponent<TurnipType>().score);
+        } else if (grabbingObject.GetComponent<TurnipType>().inBaseP2) {
+            grabbingObject.GetComponent<TurnipType>().inBaseP2 = false;
+            GameManager.instance.DeleteTurnips(!isPlayer1, grabbingObject.GetComponent<TurnipType>().score);
+        }
         grabbingObject.position = transform.position;
         grabbingObject.SetParent(transform);
     }
@@ -107,6 +118,7 @@ public class GrabBehaviour : MonoBehaviour {
         pC.anim.SetBool("SmallObject", false);
         objectGrabbed = false;
         transform.GetChild(2).position = transform.position;
+        transform.GetChild(2).GetComponent<SphereCollider>().enabled = true;
         transform.GetChild(2).GetComponent<TurnipType>().StartCoroutine(transform.GetChild(2).GetComponent<TurnipType>().GetGrabZone());
         transform.GetChild(2).SetParent(GameObject.Find("Turnips").transform);
     }
@@ -134,6 +146,7 @@ public class GrabBehaviour : MonoBehaviour {
         objectGrabbed = false;
         transform.GetChild(2).gameObject.SetActive(true);
         transform.GetChild(2).GetComponent<LawnMower>().dir = transform.forward;
+        transform.GetChild(2).forward = transform.forward;
         Vector3 pos = transform.position + transform.forward * 2;
         pos.y = -1.17f;
         transform.GetChild(2).position = pos;
@@ -157,13 +170,9 @@ public class GrabBehaviour : MonoBehaviour {
 
     void GetPlayerInterfaceHuerto() {
         if (GameManager.instance.currentMiniGame == MiniGames.Huertos && !interfazHuerto) {
-            if (transform.parent.CompareTag("Player1")) {
-                interfazHuerto = true;
-                playerInterfaceHuerto = GameObject.Find("P1Interface").GetComponentInChildren<Text>();
-            } else {
-                interfazHuerto = true;
-                playerInterfaceHuerto = GameObject.Find("P2Interface").GetComponentInChildren<Text>();
-            }
+            interfazHuerto = true;
+            playerInterfaceHuerto1 = GameObject.Find("P1Interface").GetComponentInChildren<Text>();
+            playerInterfaceHuerto2 = GameObject.Find("P2Interface").GetComponentInChildren<Text>();
 
         }
     }
@@ -250,7 +259,7 @@ public class GrabBehaviour : MonoBehaviour {
                     vegetablePos[i].GetChild(0).GetChild(0).Find(tempVegetable.name).gameObject.SetActive(true);
                     //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP1++;
-                    playerInterfaceHuerto.text = GameManager.instance.vegetablesP1.ToString() + "/12";
+                    playerInterfaceHuerto1.text = GameManager.instance.vegetablesP1.ToString() + "/12";
                     break;
                 }
             }
@@ -262,7 +271,7 @@ public class GrabBehaviour : MonoBehaviour {
                     vegetablePos[i].GetChild(0).GetChild(0).Find(tempVegetable.name).gameObject.SetActive(true);
                     //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP2++;
-                    playerInterfaceHuerto.text = GameManager.instance.vegetablesP2.ToString() + "/12";
+                    playerInterfaceHuerto2.text = GameManager.instance.vegetablesP2.ToString() + "/12";
                     break;
                 }
             }

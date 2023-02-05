@@ -12,8 +12,9 @@ public class CanvasManager : MonoBehaviour
     public GameObject playerWins;
     public GameObject nextMiniGame;
     public GameObject image;
-    public GameObject button;
     public GameObject info;
+    public GameObject globalScore;
+    public Text p1Global, p2Global;
 
     [Header("Minigames Images")]
     public Sprite nabos;

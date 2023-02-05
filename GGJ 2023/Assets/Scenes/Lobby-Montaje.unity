@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 80c4d9b203f95dd4c8ec7512fd48a19f, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1588,6 +1588,37 @@ Transform:
   - {fileID: 1827308941}
   m_Father: {fileID: 1015203805}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &465899431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 465899432}
+  m_Layer: 0
+  m_Name: InitialPos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &465899432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465899431}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.89, y: 0, z: -7.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1015203805}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &466971627
 GameObject:
@@ -4157,6 +4188,8 @@ Transform:
   - {fileID: 1541847503}
   - {fileID: 138683094}
   - {fileID: 443231719}
+  - {fileID: 1587240452}
+  - {fileID: 465899432}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4855,6 +4888,7 @@ GameObject:
   - component: {fileID: 1254076053}
   - component: {fileID: 1254076052}
   - component: {fileID: 1254076051}
+  - component: {fileID: 1254076058}
   m_Layer: 0
   m_Name: MiniGameEvents
   m_TagString: Untagged
@@ -5008,6 +5042,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254076058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254076050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d78f7e1a8b474f428392855ab319b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPos1: {fileID: 1587240452}
+  initialPos2: {fileID: 465899432}
 --- !u!1001 &1332147866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5379,7 +5427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1406384858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5554,10 +5602,13 @@ MonoBehaviour:
   - Podadoras-Montaje
   mat1: {fileID: 2100000, guid: 80da4ccf6c6df424495b42d7396fbc7a, type: 2}
   mat2: {fileID: 2100000, guid: d918bcb6958fcf149bafa5faeeba519b, type: 2}
+  gameStarted: 0
+  comeBack: 0
   currentPlayers: 0
   globalScoreP1: 0
   globalScoreP2: 0
-  playersInButton: 0
+  playersInPlay: 0
+  playersInExit: 0
   rootsP1: 6
   rootsP2: 6
   vegetablesP1: 0
@@ -5730,7 +5781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1426783871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5750,8 +5801,10 @@ MonoBehaviour:
   playerWins: {fileID: 1935169643}
   nextMiniGame: {fileID: 377813404}
   image: {fileID: 352259187}
-  button: {fileID: 36496045}
   info: {fileID: 856188006}
+  globalScore: {fileID: 0}
+  p1Global: {fileID: 0}
+  p2Global: {fileID: 0}
   nabos: {fileID: 21300000, guid: 25a567e0c4e9d91499741edb70a86901, type: 3}
   regar: {fileID: 21300000, guid: 552e9620f4f39be489a159d4013c7ed9, type: 3}
   huertos: {fileID: 21300000, guid: 5d0773e43791408489a51c49e4c024f5, type: 3}
@@ -6444,6 +6497,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581905718}
   m_CullTransparentMesh: 1
+--- !u!1 &1587240451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587240452}
+  m_Layer: 0
+  m_Name: InitialPos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1587240452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587240451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.29, y: 0, z: -5.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1015203805}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1621490947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7353,7 +7437,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

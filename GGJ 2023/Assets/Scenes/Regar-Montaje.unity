@@ -1895,10 +1895,13 @@ MonoBehaviour:
   sceneNamesBackUp: []
   mat1: {fileID: 0}
   mat2: {fileID: 0}
+  gameStarted: 0
+  comeBack: 0
   currentPlayers: 0
   globalScoreP1: 0
   globalScoreP2: 0
-  playersInButton: 0
+  playersInPlay: 0
+  playersInExit: 0
   rootsP1: 0
   rootsP2: 0
   vegetablesP1: 0
@@ -8851,7 +8854,7 @@ MonoBehaviour:
   turnSmoothTime: 0.5
   minTime: 2
   maxTime: 5
-  speed: 100
+  speed: 250
   stunDuration: 2
   limit1: {fileID: 1640034659}
   limit2: {fileID: 1955619255}

@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bda874b95cec4458331cb426a31082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  speed: 350
   turnSmoothVelocity: 0
   turnSmoothTime: 0.05
   anim: {fileID: 0}
@@ -280,7 +280,8 @@ MonoBehaviour:
   vegetablePos: []
   huerto: {fileID: 0}
   playerInterfaceRegar: {fileID: 0}
-  playerInterfaceHuerto: {fileID: 0}
+  playerInterfaceHuerto1: {fileID: 0}
+  playerInterfaceHuerto2: {fileID: 0}
   playerInterfaceNabos: {fileID: 0}
   raizCrecida: {fileID: 21300000, guid: b35aa25c43e264c4b9162f7bec4bc343, type: 3}
   huertoName: 
