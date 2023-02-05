@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrabBehaviour : MonoBehaviour {
-    bool filledHuerto;
+    bool filledHuerto, interfazRegar, interfazHuerto, interfazNabos;
     public string objectTag;
     public bool objectGrabbed;
     public bool water, vegetable, turnip;
@@ -12,6 +13,10 @@ public class GrabBehaviour : MonoBehaviour {
     public int waterCount, waterToWin;
     public List<Transform> vegetablePos;
     public Transform huerto;
+    public Transform playerInterfaceRegar;
+    public Text playerInterfaceHuerto;
+    public Text playerInterfaceNabos;
+    public Sprite raizCrecida;
     public string huertoName;
 
     PlayerController pC;
@@ -24,6 +29,9 @@ public class GrabBehaviour : MonoBehaviour {
 
     private void Update() {
         HuertoSetup();
+        GetPlayerInterfaceRegar();
+        GetPlayerInterfaceHuerto();
+        GetPlayerInterfaceNabo();
     }
 
 
@@ -112,7 +120,7 @@ public class GrabBehaviour : MonoBehaviour {
         pC.grabZone = false;
         objectGrabbed = true;
         grabbingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        grabbingObject.position = transform.position + transform.forward*2;
+        grabbingObject.position = transform.position + transform.forward * 2;
         grabbingObject.SetParent(transform);
         grabbingObject.gameObject.SetActive(false);
         mowerPlaceHolder.SetActive(true);
@@ -127,6 +135,45 @@ public class GrabBehaviour : MonoBehaviour {
         transform.GetChild(2).GetComponent<LawnMower>().StartCoroutine(transform.GetChild(2).GetComponent<LawnMower>().GetGrabZone());
         transform.GetChild(2).SetParent(GameObject.Find("Mowers").transform);
         mowerPlaceHolder.SetActive(false);
+    }
+
+    void GetPlayerInterfaceRegar() {
+        if (GameManager.instance.currentMiniGame == MiniGames.Regar && !interfazRegar) {
+            if (transform.parent.CompareTag("Player1")) {
+                interfazRegar = true;
+                playerInterfaceRegar = GameObject.Find("P1Interface").transform;
+            } else {
+                interfazRegar = true;
+                playerInterfaceRegar = GameObject.Find("P2Interface").transform;
+            }
+
+        }
+    }
+
+    void GetPlayerInterfaceHuerto() {
+        if (GameManager.instance.currentMiniGame == MiniGames.Huertos && !interfazHuerto) {
+            if (transform.parent.CompareTag("Player1")) {
+                interfazHuerto = true;
+                playerInterfaceHuerto = GameObject.Find("P1Interface").GetComponentInChildren<Text>();
+            } else {
+                interfazHuerto = true;
+                playerInterfaceHuerto = GameObject.Find("P2Interface").GetComponentInChildren<Text>();
+            }
+
+        }
+    }
+
+    void GetPlayerInterfaceNabo() {
+        if (GameManager.instance.currentMiniGame == MiniGames.Nabos && !interfazNabos) {
+            if (transform.parent.CompareTag("Player1")) {
+                interfazNabos = true;
+                playerInterfaceNabos = GameObject.Find("P1Interface").GetComponentInChildren<Text>();
+            } else {
+                interfazNabos = true;
+                playerInterfaceNabos = GameObject.Find("P2Interface").GetComponentInChildren<Text>();
+            }
+
+        }
     }
 
     #region Huerto
@@ -144,6 +191,22 @@ public class GrabBehaviour : MonoBehaviour {
         pC.anim.SetTrigger("GrabObject");
         pC.anim.SetBool("SmallObject", true);
         vegetablePlaceHolder.SetActive(true);
+        switch (vegetable.GetComponent<VegetableType>().vTypes) {
+            case Types.Cebolla:
+                vegetablePlaceHolder.transform.GetChild(1).gameObject.SetActive(true);
+                break;
+            case Types.Rabano:
+                vegetablePlaceHolder.transform.GetChild(2).gameObject.SetActive(true);
+                break;
+            case Types.Zanahoria:
+                vegetablePlaceHolder.transform.GetChild(3).gameObject.SetActive(true);
+                break;
+            case Types.Patata:
+                vegetablePlaceHolder.transform.GetChild(0).gameObject.SetActive(true);
+                break;
+            default:
+                break;
+        }
         if (!vegetable.parent.TryGetComponent(out PlayerVegetable pV)) {
             Destroy(vegetable.gameObject);
         } else {
@@ -162,12 +225,16 @@ public class GrabBehaviour : MonoBehaviour {
         vegetable = false;
         objectGrabbed = false;
         vegetablePlaceHolder.SetActive(false);
+        for (int i = 0; i < vegetablePlaceHolder.transform.childCount; i++) {
+            vegetablePlaceHolder.transform.GetChild(i).gameObject.SetActive(false);
+        }
         if (transform.parent.CompareTag("Player1")) {
             for (int i = 0; i < vegetablePos.Count; i++) {
                 if (!vegetablePos[i].GetChild(0).gameObject.activeInHierarchy) {
                     vegetablePos[i].GetChild(0).gameObject.SetActive(true);
                     //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP1++;
+                    playerInterfaceHuerto.text = GameManager.instance.vegetablesP1.ToString() + "/12";
                     break;
                 }
             }
@@ -178,6 +245,7 @@ public class GrabBehaviour : MonoBehaviour {
                     vegetablePos[i].GetChild(0).gameObject.SetActive(true);
                     //particulas verdura en huerto player1
                     GameManager.instance.vegetablesP2++;
+                    playerInterfaceHuerto.text = GameManager.instance.vegetablesP2.ToString() + "/12";
                     break;
                 }
             }
@@ -197,6 +265,13 @@ public class GrabBehaviour : MonoBehaviour {
         if (transform.parent.CompareTag("Player2")) {
             isPlayer1 = false;
         }
+
+        if (isPlayer1) {
+            playerInterfaceRegar.GetChild(GameManager.instance.waterP1).GetComponent<Image>().sprite = raizCrecida;
+        } else {
+            playerInterfaceRegar.GetChild(GameManager.instance.waterP2).GetComponent<Image>().sprite = raizCrecida;
+        }
+
         GameManager.instance.CheckWater(isPlayer1);
     }
 

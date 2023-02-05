@@ -60,21 +60,21 @@ public class GameManager : MonoBehaviour {
     void SwitchImage() {
         randomMiniGame = Random.Range(0, sceneNames.Count);
         CanvasManager.instance.nextMiniGame.SetActive(true);
-        CanvasManager.instance.image.SetActive(true);
         switch (sceneNames[randomMiniGame]) {
             case "Regar-Montaje":
                 CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.regar;
                 break;
-            case "Nabos":
+            case "Nabos-Montaje":
                 CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.nabos;
                 break;
-            case "Huerto":
+            case "Huerto-Montaje":
                 CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.huertos;
                 break;
             case "Podadoras":
                 CanvasManager.instance.image.GetComponent<Image>().sprite = CanvasManager.instance.podadoras;
                 break;
         }
+        CanvasManager.instance.image.SetActive(true);
     }
 
     public IEnumerator LobbyCountDown() {
@@ -154,39 +154,47 @@ public class GameManager : MonoBehaviour {
 
         p2.GetComponentInChildren<Animator>().ResetTrigger("GrabObject");
         p2.GetComponentInChildren<Animator>().ResetTrigger("GrabTurnip");
-        p2.GetComponentInChildren<Animator>().ResetTrigger("GrabMower");
+        p2.GetComponentInChildren<Animator>().ResetTrigger("GrabPodadora");
         p1.GetComponentInChildren<Animator>().ResetTrigger("GrabTurnip");
         p1.GetComponentInChildren<Animator>().ResetTrigger("GrabObject");
-        p1.GetComponentInChildren<Animator>().ResetTrigger("GrabMower");
+        p1.GetComponentInChildren<Animator>().ResetTrigger("GrabPodadora");
         switch (sceneNames[randomMiniGame]) {
             case "Regar-Montaje":
                 p1.GetComponentInChildren<Animator>().SetBool("SmallObject", true);
+                p1.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p1.GetComponentInChildren<PlayerController>().cube.SetActive(true);
                 p2.GetComponentInChildren<Animator>().SetBool("SmallObject", true);
+                p2.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p2.GetComponentInChildren<PlayerController>().cube.SetActive(true);
                 currentMiniGame = MiniGames.Regar;
                 sceneNames.Remove("Regar-Montaje");
                 break;
-            case "Nabos":
+            case "Nabos-Montaje":
                 p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p1.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p1.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 p2.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p2.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Nabos;
                 sceneNames.Remove("Nabos");
                 break;
-            case "Huerto":
+            case "Huerto-Montaje":
                 p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p1.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p1.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 p2.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p2.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Huertos;
-                sceneNames.Remove("Huerto");
+                sceneNames.Remove("Huerto-Montaje");
                 break;
             case "Podadoras":
                 p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p1.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p1.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 p2.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
+                p2.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Podadoras;
                 sceneNames.Remove("Podadoras");
@@ -196,18 +204,22 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(StartTimer());
     }
 
-    public void AddGlobalScore(bool isPlayer1) {
+    public bool AddGlobalScore(bool isPlayer1) {
+        bool gameEnded = false;
         if (isPlayer1) {
             if (++globalScoreP1 >= 2) {
                 CanvasManager.instance.playerWins.GetComponent<Text>().text = player1WinsGame;
+                gameEnded = true;
                 Time.timeScale = 0f;
             }
         } else {
             if (++globalScoreP2 >= 2) {
                 CanvasManager.instance.playerWins.GetComponent<Text>().text = player2WinsGame;
+                gameEnded = true;
                 Time.timeScale = 0f;
             }
         }
+        return gameEnded;
     }
 
     public IEnumerator StartTimer() {
@@ -288,8 +300,8 @@ public class GameManager : MonoBehaviour {
                 break;
         }
 
-        if (!draw) {
-            AddGlobalScore(isPlayer1);
+        if (!draw && AddGlobalScore(isPlayer1)) {
+            return;
         }
 
         if (sceneNames.Count > 0) {
@@ -363,16 +375,20 @@ public class GameManager : MonoBehaviour {
     public void CheckTurnips(bool isPlayer1, int score) {
         if (isPlayer1) {
             turnipsP1 += score;
+            GameObject.FindGameObjectWithTag("Player1").GetComponentInChildren<GrabBehaviour>().playerInterfaceNabos.text = turnipsP1.ToString();
         } else {
             turnipsP2 += score;
+            GameObject.FindGameObjectWithTag("Player2").GetComponentInChildren<GrabBehaviour>().playerInterfaceNabos.text = turnipsP2.ToString();
         }
     }
 
     public void DeleteTurnips(bool isPlayer1, int score) {
         if (isPlayer1) {
             turnipsP1 -= score;
+            GameObject.FindGameObjectWithTag("Player1").GetComponentInChildren<GrabBehaviour>().playerInterfaceNabos.text = turnipsP1.ToString();
         } else {
             turnipsP2 -= score;
+            GameObject.FindGameObjectWithTag("Player2").GetComponentInChildren<GrabBehaviour>().playerInterfaceNabos.text = turnipsP2.ToString();
         }
     }
     //private void PIM_onPlayerJoined(PlayerInput obj) {

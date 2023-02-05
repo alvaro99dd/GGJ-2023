@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] float speed;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     public BoxCollider bC;
     public SkinnedMeshRenderer skm;
     public GameObject cube;
+    public Sprite spaceBar, intro;
 
     public ParticleSystem stunPSystem;
     public ParticleSystem waterThrowPSystem;
@@ -28,6 +30,11 @@ public class PlayerController : MonoBehaviour {
         gB = GetComponentInChildren<GrabBehaviour>();
         skm = GetComponentInChildren<SkinnedMeshRenderer>();
         anim = GetComponentInChildren<Animator>();
+        if (transform.CompareTag("Player1")) {
+            transform.Find("Canvas").GetChild(0).GetComponent<Image>().sprite = spaceBar;
+        } else {
+            transform.Find("Canvas").GetChild(0).GetComponent<Image>().sprite = intro;
+        }
         if (GameManager.instance.currentPlayers == 1) {
             skm.material = GameManager.instance.mat1;
         } else {
@@ -40,7 +47,7 @@ public class PlayerController : MonoBehaviour {
         if (earthquake != null) {
             CheckEarthquake();
         }
-        CheckPrompt();
+        //CheckPrompt();
         GetEarthQuake();
     }
 
@@ -112,10 +119,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void CheckPrompt() {
-        if (dropZone && gB.objectGrabbed) {
-            Debug.Log("Mostrando prompt");
-        } else if (grabZone && !gB.objectGrabbed) {
-            Debug.Log("Mostrando prompt");
+        if (dropZone && gB.objectGrabbed && !transform.Find("Canvas").gameObject.activeInHierarchy) {
+            transform.Find("Canvas").gameObject.SetActive(true);
+        } else if (grabZone && !gB.objectGrabbed && !transform.Find("Canvas").gameObject.activeInHierarchy) {
+            transform.Find("Canvas").gameObject.SetActive(true);
         }
     }
 
@@ -160,8 +167,10 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerExit(Collider other) {
         if (other.CompareTag("DropZone")) {
             dropZone = false;
+            transform.Find("Canvas").gameObject.SetActive(false);
         } else {
             grabZone = false;
+            transform.Find("Canvas").gameObject.SetActive(false);
         }
 
         if (other.CompareTag("Play")) {

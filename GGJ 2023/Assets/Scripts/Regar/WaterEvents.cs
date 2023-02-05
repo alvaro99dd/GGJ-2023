@@ -25,7 +25,7 @@ public class WaterEvents : MonoBehaviour {
         }
         //firstRandomSpawn();
         StartCoroutine(randomSpawn());
-        //SetStartingPos();
+        SetStartingPos();
         movement = StartCoroutine(randomMovement());
         //Set de tiempo de lluvia a la nube 1
         var main1 = rainSystem1.main;

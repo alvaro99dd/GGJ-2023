@@ -320,8 +320,8 @@ MonoBehaviour:
   pIM: {fileID: 332162403}
   sceneNames:
   - Regar-Montaje
-  - Nabos
-  - Huerto
+  - Nabos-Montaje
+  - Huerto-Montaje
   - Podadoras
   mat1: {fileID: 2100000, guid: 80da4ccf6c6df424495b42d7396fbc7a, type: 2}
   mat2: {fileID: 2100000, guid: d918bcb6958fcf149bafa5faeeba519b, type: 2}
@@ -337,7 +337,7 @@ MonoBehaviour:
   turnipsP2: 0
   waterP1: 0
   waterP2: 0
-  waterToWin: 3
+  waterToWin: 5
   timer: 0
   player1WinsRound: Player1 wins this round!
   player2WinsRound: Player2 wins this round!
@@ -1501,7 +1501,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 5
 --- !u!222 &1394307232
 CanvasRenderer:
   m_ObjectHideFlags: 0
