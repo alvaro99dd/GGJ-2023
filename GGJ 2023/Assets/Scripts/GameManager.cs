@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour {
                 currentMiniGame = MiniGames.Huertos;
                 sceneNames.Remove("Huerto-Montaje");
                 break;
-            case "Podadoras-Montaje":
+            case "Podadoras":
                 p1.GetComponentInChildren<Animator>().SetBool("SmallObject", false);
                 p1.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p1.GetComponentInChildren<PlayerController>().cube.SetActive(false);
@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour {
                 p2.GetComponentInChildren<Animator>().SetBool("Podadora", false);
                 p2.GetComponentInChildren<PlayerController>().cube.SetActive(false);
                 currentMiniGame = MiniGames.Podadoras;
-                sceneNames.Remove("Podadoras-Montaje");
+                sceneNames.Remove("Podadoras");
                 break;
         }
         finishingGame = false;
@@ -400,6 +400,22 @@ public class GameManager : MonoBehaviour {
     }
 
     public void GoBackToLobby() {
+        globalScoreP1 = 0;
+        globalScoreP2 = 0;
+        waterP1 = 0;
+        waterP2 = 0;
+        turnipsP1 = 0;
+        turnipsP2 = 0;
+        rootsP1 = 6;
+        rootsP2 = 6;
+        sceneNames = sceneNamesBackUp;
+        CanvasManager.instance.playerWins.SetActive(false);
+        CanvasManager.instance.button.SetActive(false);
+        currentMiniGame = MiniGames.Lobby;
+        Time.timeScale = 1;
+        aS.Stop();
+        aS.clip = mM.temaC;
+        aS.Play();
         SceneManager.LoadScene("Lobby");
     }
     //private void PIM_onPlayerJoined(PlayerInput obj) {

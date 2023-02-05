@@ -8,7 +8,6 @@ public enum BodySize {
 
 public class TurnipType : MonoBehaviour
 {
-    ParticleSystem turnipParticles;
     public BodySize bodySize;
     public Collider trigger;
     int score;
@@ -19,7 +18,6 @@ public class TurnipType : MonoBehaviour
     }
 
     void Setup() {
-        turnipParticles = GetComponentInChildren<ParticleSystem>();
         trigger = GetComponent<SphereCollider>();
         int randomValue = Random.Range(0, 4);
         switch (randomValue) {
@@ -54,12 +52,10 @@ public class TurnipType : MonoBehaviour
         bool isPlayer1 = true;
         if (collision.name == "BasePlayer1" && !hasCollided) {
             //particulas nabo puesto en base
-            turnipParticles.Play();
             hasCollided = true;
             GameManager.instance.CheckTurnips(isPlayer1, score);
         } else if (collision.name == "BasePlayer2" && !hasCollided) {
             //particulas nabo puesto en base
-            turnipParticles.Play();
             hasCollided = true;
             GameManager.instance.CheckTurnips(!isPlayer1, score);
         }
